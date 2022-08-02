@@ -1,0 +1,8 @@
+8/2/2022 2:19:59 PM:648 -> Error close serial port
+8/1/2022 5:05:24 PM:549 -> Error opening serial port
+8/1/2022 4:29:25 PM:472 -> Error opening serial port
+8/1/2022 2:57:23 PM:101 -> Error opening serial port
+8/1/2022 1:39:14 PM:263 -> Error opening serial port
+8/1/2022 1:39:03 PM:757 -> Error opening serial port
+8/1/2022 12:06:16 PM:402 -> Error : Importing cfg file failed
+8/1/2022 12:05:52 PM:299 -> Error : Importing Tag List file failed

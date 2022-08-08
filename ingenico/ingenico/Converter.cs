@@ -9,17 +9,17 @@ namespace ingenico
     public const int UTF8 = 1;
     private bool bIsLRC;
 
-    public byte[] convertStringToByteArray(string data, int EncodeType)
+    public byte[] ConvertStringToByteArray(string data, int EncodeType)
     {
       if (EncodeType == 0)
         return new ASCIIEncoding().GetBytes(data);
       return EncodeType == 1 ? new UTF8Encoding().GetBytes(data) : new ASCIIEncoding().GetBytes(data);
     }
 
-    public string convertByteArreyToString(byte[] data, int size)
+    public string ConvertByteArrayToString(byte[] data, int size)
     {
       string str = "";
-      Encoding.ASCII.GetString(data);
+      //Encoding.ASCII.GetString(data);
       for (int index = 0; index < size; ++index)
       {
         char ch = (char) data[index];
@@ -63,7 +63,7 @@ namespace ingenico
       return str;
     }
 
-    public string convertFieldToAscii(byte[] data) => Encoding.ASCII.GetString(data) + "00";
+    public string ConvertFieldToAscii(byte[] data) => Encoding.ASCII.GetString(data) + "00";
 
     public int calculateLrc(byte[] data, string origin)
     {

@@ -34,7 +34,6 @@ namespace ingenico
         {
           if (reader.Name.Equals("TenderType"))
           {
-            Console.WriteLine("Found TenderType");
             XmlNode xmlNode = xmlDocument.ReadNode((XmlReader) reader);
             if (xmlNode.Attributes.Item(0).Name.Equals("Name") && xmlNode.Attributes.Item(1).Name.Equals("Value"))
             {

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
+using System.Linq;
 using System.Threading;
 
 namespace ingenico
@@ -33,22 +35,22 @@ namespace ingenico
 
     public LowLevelProtocol(Communication communication)
     {
-      this.timerAck.Tick += new EventHandler(this.TimerACKOnTick);
-      this.timerAck.Interval = 1000;
-      this.timerRetryResponse.Tick += new EventHandler(this.TimerRetryResponseOnTick);
-      this.timerRetryResponse.Interval = 2000;
-      this.timerHeartBeat.Tick += new EventHandler(this.TimerHeartBeatOnTick);
-      this.timerHeartBeat.Interval = 15000;
-      this.timerAckLate.Tick += new EventHandler(this.TimerAckLateOnTick);
-      this.timerAckLate.Interval = 1200;
-      this.COM = communication;
+      timerAck.Tick += new EventHandler(TimerACKOnTick);
+      timerAck.Interval = 1000;
+      timerRetryResponse.Tick += new EventHandler(TimerRetryResponseOnTick);
+      timerRetryResponse.Interval = 2000;
+      timerHeartBeat.Tick += new EventHandler(TimerHeartBeatOnTick);
+      timerHeartBeat.Interval = 15000;
+      timerAckLate.Tick += new EventHandler(TimerAckLateOnTick);
+      timerAckLate.Interval = 1200;
+      COM = communication;
     }
 
     private void TimerHeartBeatOnTick(object sender, EventArgs ea)
     {
-      if (this.WaitUserAction || this.isEcrDisconnected)
+      if (WaitUserAction || isEcrDisconnected)
         return;
-      this.WaitUserAction = true;
+      WaitUserAction = true;
       // if (MessageBox.Show("Heart Beat missing!", "Connection Problem", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
       // {
       //   LowLevelProtocol.eRcvMsg = eReceivedMsg.E_HB_ABSCENCE;
@@ -57,144 +59,121 @@ namespace ingenico
       //     int num = (int) MessageBox.Show("Please unplug and replug your USB device!", "WINTSI", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
       //   }
       // }
-      this.WaitUserAction = false;
+      WaitUserAction = false;
     }
 
-    private void TimerRetryResponseOnTick(object sender, EventArgs ea) => LowLevelProtocol.eRcvMsg = eReceivedMsg.E_RETRY_RESP_TO;
+    private void TimerRetryResponseOnTick(object sender, EventArgs ea) => eRcvMsg = eReceivedMsg.E_RETRY_RESP_TO;
 
-    private void TimerACKOnTick(object sender, EventArgs ea) => LowLevelProtocol.eRcvMsg = eReceivedMsg.E_TO_ACK;
+    private void TimerACKOnTick(object sender, EventArgs ea) => eRcvMsg = eReceivedMsg.E_TO_ACK;
 
     private void TimerAckLateOnTick(object sender, EventArgs ea)
     {
-      if (this.COM.Send(this.ACK, 0, this.ACK.Length))
-        this.TraceData(this.ACK, this.ACK.Length, "==> ");
-      if (this.ackCount > 0)
-        --this.ackCount;
-      if (this.ackCount == 0)
-        this.timerAckLate.Stop();
+      if (COM.Send(ACK, 0, ACK.Length))
+        TraceData(ACK, ACK.Length, "==> ");
+      if (ackCount > 0)
+        --ackCount;
+      if (ackCount == 0)
+        timerAckLate.Stop();
       else
-        this.timerAckLate.Start();
+        timerAckLate.Start();
     }
 
-    public byte[] FormatTnxCommand(string Data)
+    private byte[] FormatTnxCommand(string data)
     {
-      byte[] byteArray;
-      if (this.COM.link_Type == "ETHERNET")
-      {
-        byteArray = this.converter.HexStringToByteArray(Data, 0, 0);
-      }
-      else
-      {
-        byteArray = this.converter.HexStringToByteArray(Data, 1, 3);
-        if (Data.Length >= 2 && byteArray.Length <= 1021)
-        {
-          byteArray[byteArray.Length - 2] = (byte) 3;
-          int lrc = this.converter.calculateLrc(byteArray, "command");
-          byteArray[byteArray.Length - 1] = true ? (byte) (lrc + 1) : (byte) lrc;
-          byteArray[0] = (byte) 2;
-          if (true)
-          {
-            byte[] numArray = new byte[byteArray.Length + 6];
-            new Random().NextBytes(numArray);
-            Array.Copy((Array) byteArray, 0, (Array) numArray, 3, byteArray.Length);
-            return numArray;
-          }
-        }
-      }
+      var byteArray = converter.HexStringToByteArray(data, 1, 3);
+      if (data.Length < 2 || byteArray.Length > 1021) return byteArray;
+      byteArray[byteArray.Length - 2] = 3;
+      int lrc = converter.calculateLrc(byteArray, "command");
+      byteArray[byteArray.Length - 1] = (byte) (lrc + 1);
+      byteArray[0] = 2;
+      // byte[] numArray = new byte[byteArray.Length + 6];
+      // new Random().NextBytes(numArray);
+      // Array.Copy(byteArray, 0, numArray, 3, byteArray.Length);
       return byteArray;
     }
 
-    public void TraceData(byte[] commandByte, int size, string arrow)
+    private void TraceData(byte[] commandByte, int size, string arrow)
     {
-      int length = 16;
-      byte[] numArray1 = new byte[length];
+      const int length = 16;
+      var numArray1 = new byte[length];
       if (commandByte == null)
         return;
-      DateTime now = DateTime.Now;
-      string text = arrow + now.ToString() + "." + now.Millisecond.ToString() + " : \r\n";
+      var now = DateTime.Now;
+      var text = arrow + now.ToString(CultureInfo.InvariantCulture) + "." + now.Millisecond + " : \r\n";
       Console.WriteLine(text);
       int num;
       for (num = 0; num < size / length; ++num)
       {
-        Array.Copy((Array) commandByte, num * length, (Array) numArray1, 0, length);
-        Console.WriteLine(string.Format("{0,-55}{1}", (object) BitConverter.ToString(numArray1).Replace("-", " "), (object) this.converter.convertByteArreyToString(numArray1, length)) + "\r\n");
+        Array.Copy(commandByte, num * length, numArray1, 0, length);
+        Console.WriteLine(
+          $"{BitConverter.ToString(numArray1).Replace("-", " "),-55}{converter.ConvertByteArrayToString(numArray1, length)}" + "\r\n");
       }
       if (size > length * num)
       {
-        byte[] numArray2 = new byte[size - length * num];
-        Array.Copy((Array) commandByte, num * length, (Array) numArray2, 0, size - length * num);
-        Console.WriteLine(string.Format("{0,-55}{1}", (object) BitConverter.ToString(numArray2).Replace("-", " "), (object) this.converter.convertByteArreyToString(numArray2, size - length * num)) + "\r\n");
+        var numArray2 = new byte[size - length * num];
+        Array.Copy(commandByte, num * length, numArray2, 0, size - length * num);
+        Console.WriteLine(
+          $"{BitConverter.ToString(numArray2).Replace("-", " "),-55}{converter.ConvertByteArrayToString(numArray2, size - length * num)}" + "\r\n");
       }
     }
 
     public bool SendRequestData(string DataToSend, bool bPrintingResponse)
     {
       bool flag = false;
-      this.nRetryCount = 0;
-      LowLevelProtocol.bIsPrintingResponse = bPrintingResponse;
-      this.RequestToSend = this.FormatTnxCommand(DataToSend);
-      eStatus eStatus = LowLevelProtocol.bIsPrintingResponse ? eStatus.E_WAIT_RESPONSE : eStatus.E_CONNECTED;
-      if (LowLevelProtocol.eState == eStatus && this.RequestToSend != null)
+      nRetryCount = 0;
+      bIsPrintingResponse = bPrintingResponse;
+      RequestToSend = FormatTnxCommand(DataToSend);
+      eStatus eStatus = bIsPrintingResponse ? eStatus.E_WAIT_RESPONSE : eStatus.E_CONNECTED;
+      if (eState == eStatus && RequestToSend != null)
       {
-        flag = this.COM.Send(this.RequestToSend, 0, this.RequestToSend.Length);
-        if (this.COM.link_Type != "ETHERNET")
-        {
-          this.timerAck.Stop();
-          this.timerAck.Start();
-        }
+        Console.WriteLine(DataToSend);
+        flag = COM.Send(RequestToSend, 0, RequestToSend.Length);
         if (flag)
-          this.TraceData(this.RequestToSend, this.RequestToSend.Length, "==> ");
-        if (this.COM.link_Type != "ETHERNET")
-        {
-          LowLevelProtocol.eState = eStatus.E_WAIT_ACK;
-        }
-        else
-        {
-          LowLevelProtocol.eState = eStatus.E_WAIT_RESPONSE;
-          this.timerHeartBeat.Stop();
-          this.timerHeartBeat.Start();
-        }
+          TraceData(RequestToSend, RequestToSend.Length, "==> ");
+        eState = eStatus.E_WAIT_RESPONSE;
+        timerHeartBeat.Stop();
+        timerHeartBeat.Start();
       }
       return flag;
     }
 
     public bool ComOpen(Communication communication)
     {
-      this.COM = communication;
-      if (this.COM.GetConnectStatus())
+      COM = communication;
+      if (COM.GetConnectStatus())
       {
-        LowLevelProtocol.eState = eStatus.E_CONNECTED;
+        eState = eStatus.E_CONNECTED;
         return true;
       }
       try
       {
-        this.COM.COMConfiguration();
-        this.COM.Connect();
-        if (!this.COM.GetConnectStatus())
+        COM.COMConfiguration();
+        COM.Connect();
+        if (!COM.GetConnectStatus())
           return false;
-        LowLevelProtocol.eState = eStatus.E_CONNECTED;
+        eState = eStatus.E_CONNECTED;
         if (true)
         {
           string text = "Connected\n\n";
           Console.WriteLine(text);
         }
-        if (this.readThread != null && this.readThread.IsAlive)
-          this.RequestStop();
-        if (this.COM.link_Type == "ETHERNET" && this.readThread == null)
+        if (readThread != null && readThread.IsAlive)
+          RequestStop();
+        if (COM.link_Type == "ETHERNET" && readThread == null)
         {
-          LowLevelProtocol._shouldStop = false;
-          this.readThread = new Thread(new ThreadStart(this.ReceiveData));
-          this.readThread.Start();
+          _shouldStop = false;
+          readThread = new Thread(new ThreadStart(ReceiveData));
+          readThread.Start();
           do
-            ;
-          while (!this.readThread.IsAlive);
+          {
+          } while (!readThread.IsAlive);
           Thread.Sleep(1);
         }
         return true;
       }
       catch (Exception ex)
       {
-        //int num = (int) MessageBox.Show("COM port Error", "WINTSI", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+         Console.WriteLine("COM port Error");
         return false;
       }
     }
@@ -202,12 +181,12 @@ namespace ingenico
     public bool ComClose()
     {
       bool flag = true;
-      if (this.readThread != null && this.readThread.IsAlive)
-        this.RequestStop();
-      if (this.COM.GetConnectStatus())
+      if (readThread != null && readThread.IsAlive)
+        RequestStop();
+      if (COM.GetConnectStatus())
       {
-        this.COM.Disconnect();
-        if (this.COM.GetConnectStatus())
+        COM.Disconnect();
+        if (COM.GetConnectStatus())
           flag = false;
         else if (true)
         {
@@ -229,211 +208,211 @@ namespace ingenico
       bDisconnect = false;
       szRespStatus = "";
       packageSeq = 0;
-      LowLevelProtocol.receivedData = this.COM.Receive(out LowLevelProtocol.receivedSize);
-      if (LowLevelProtocol.receivedData != null && LowLevelProtocol.receivedSize != 0)
+      receivedData = COM.Receive(out receivedSize);
+      if (receivedData != null && receivedSize != 0)
       {
-        LowLevelProtocol.eRcvMsg = this.VerifyTypeMsgReceived();
-        this.TraceData(LowLevelProtocol.receivedData, LowLevelProtocol.receivedSize, "<== ");
-        this.timerHeartBeat.Stop();
+        eRcvMsg = VerifyTypeMsgReceived();
+        TraceData(receivedData, receivedSize, "<== ");
+        timerHeartBeat.Stop();
       }
-      else if (this.COM.StartReceiving())
-        this.timerHeartBeat.Stop();
-      switch (LowLevelProtocol.eState)
+      else if (COM.StartReceiving())
+        timerHeartBeat.Stop();
+      switch (eState)
       {
         case eStatus.E_IDLE:
-          this.nRetryCount = 0;
+          nRetryCount = 0;
           break;
         case eStatus.E_WAIT_ACK:
-          switch (LowLevelProtocol.eRcvMsg)
+          switch (eRcvMsg)
           {
             case eReceivedMsg.E_NACK:
             case eReceivedMsg.E_TO_ACK:
-              ++this.nRetryCount;
-              if (this.nRetryCount < 3)
+              ++nRetryCount;
+              if (nRetryCount < 3)
               {
-                if (this.COM.Send(this.RequestToSend, 0, this.RequestToSend.Length))
-                  this.TraceData(this.RequestToSend, this.RequestToSend.Length, "==> ");
-                if (this.COM.link_Type != "ETHERNET")
+                if (COM.Send(RequestToSend, 0, RequestToSend.Length))
+                  TraceData(RequestToSend, RequestToSend.Length, "==> ");
+                if (COM.link_Type != "ETHERNET")
                 {
-                  this.timerAck.Stop();
-                  this.timerAck.Start();
+                  timerAck.Stop();
+                  timerAck.Start();
                   break;
                 }
                 break;
               }
-              this.nRetryCount = 0;
-              this.timerHeartBeat.Stop();
-              this.timerAck.Stop();
-              this.timerRetryResponse.Stop();
-              if (!LowLevelProtocol.bIsPrintingResponse)
+              nRetryCount = 0;
+              timerHeartBeat.Stop();
+              timerAck.Stop();
+              timerRetryResponse.Stop();
+              if (!bIsPrintingResponse)
               {
-                LowLevelProtocol.eState = eStatus.E_IDLE;
+                eState = eStatus.E_IDLE;
                 bDisconnect = true;
                 break;
               }
-              LowLevelProtocol.eState = eStatus.E_WAIT_RESPONSE;
-              this.timerHeartBeat.Start();
+              eState = eStatus.E_WAIT_RESPONSE;
+              timerHeartBeat.Start();
               break;
             case eReceivedMsg.E_ACK:
-              LowLevelProtocol.eState = eStatus.E_WAIT_RESPONSE;
-              this.nRetryCount = 0;
-              this.timerHeartBeat.Start();
+              eState = eStatus.E_WAIT_RESPONSE;
+              nRetryCount = 0;
+              timerHeartBeat.Start();
               break;
           }
           break;
         case eStatus.E_WAIT_RESPONSE:
-          switch (LowLevelProtocol.eRcvMsg)
+          switch (eRcvMsg)
           {
             case eReceivedMsg.E_ERRORFRAME:
-              if (this.COM.link_Type != "ETHERNET")
+              if (COM.link_Type != "ETHERNET")
               {
-                this.timerHeartBeat.Stop();
-                this.timerHeartBeat.Start();
-                if (this.COM.Send(this.NACK, 0, this.NACK.Length))
+                timerHeartBeat.Stop();
+                timerHeartBeat.Start();
+                if (COM.Send(NACK, 0, NACK.Length))
                 {
-                  this.TraceData(this.NACK, this.NACK.Length, "==> ");
+                  TraceData(NACK, NACK.Length, "==> ");
                   break;
                 }
                 break;
               }
               break;
             case eReceivedMsg.E_CORRECTFRAME:
-              if (this.COM.link_Type != "ETHERNET")
+              if (COM.link_Type != "ETHERNET")
               {
                 if (false)
                 {
-                  if (!this.timerAckLate.Enabled)
+                  if (!timerAckLate.Enabled)
                   {
-                    this.timerAckLate.Start();
-                    this.ackCount = 1;
+                    timerAckLate.Start();
+                    ackCount = 1;
                   }
                   else
-                    ++this.ackCount;
+                    ++ackCount;
                 }
                 else
                 {
-                  if (this.COM.Send(this.ACK, 0, this.ACK.Length))
-                    this.TraceData(this.ACK, this.ACK.Length, "==> ");
-                  this.timerRetryResponse.Stop();
-                  this.bAckDelayed = false;
+                  if (COM.Send(ACK, 0, ACK.Length))
+                    TraceData(ACK, ACK.Length, "==> ");
+                  timerRetryResponse.Stop();
+                  bAckDelayed = false;
                 }
               }
-              szRespStatus = this.converter.convertByteArreyToString(LowLevelProtocol.msgResponse, 2);
+              szRespStatus = converter.ConvertByteArrayToString(msgResponse, 2);
               if (szRespStatus != "91")
-                packageSeq = (int) Convert.ToChar(LowLevelProtocol.msgResponse[2]) - 48;
-              else if (szRespStatus == "91" && LowLevelProtocol.msgResponse.Length >= 6)
-                packageSeq = (int) Convert.ToChar(LowLevelProtocol.msgResponse[5]) - 48;
-              this.timerHeartBeat.Stop();
+                packageSeq = (int) Convert.ToChar(msgResponse[2]) - 48;
+              else if (szRespStatus == "91" && msgResponse.Length >= 6)
+                packageSeq = (int) Convert.ToChar(msgResponse[5]) - 48;
+              timerHeartBeat.Stop();
               if (szRespStatus == "99")
               {
                 flag = true;
-                msgResp = LowLevelProtocol.msgResponse;
+                msgResp = msgResponse;
                 break;
               }
               flag = true;
-              msgResp = LowLevelProtocol.msgResponse;
+              msgResp = msgResponse;
               if (packageSeq == 0)
               {
-                if (this.ackCount == 0)
+                if (ackCount == 0)
                 {
                   bDisconnect = true;
-                  this.timerAck.Stop();
-                  this.timerRetryResponse.Stop();
-                  this.bAckDelayed = false;
+                  timerAck.Stop();
+                  timerRetryResponse.Stop();
+                  bAckDelayed = false;
                   break;
                 }
-                this.bAckDelayed = true;
+                bAckDelayed = true;
                 break;
               }
               break;
             case eReceivedMsg.E_HEARTBEAT:
-              this.timerHeartBeat.Start();
+              timerHeartBeat.Start();
               break;
             case eReceivedMsg.E_RETRY_RESP_TO:
               bDisconnect = true;
               flag = false;
-              this.timerHeartBeat.Stop();
-              this.timerAck.Stop();
-              this.timerRetryResponse.Stop();
+              timerHeartBeat.Stop();
+              timerAck.Stop();
+              timerRetryResponse.Stop();
               break;
             case eReceivedMsg.E_HB_ABSCENCE:
               bDisconnect = true;
-              this.timerHeartBeat.Stop();
-              this.timerAck.Stop();
-              this.timerRetryResponse.Stop();
+              timerHeartBeat.Stop();
+              timerAck.Stop();
+              timerRetryResponse.Stop();
               break;
             case eReceivedMsg.E_NO_ACK:
-              this.timerHeartBeat.Start();
+              timerHeartBeat.Start();
               break;
             default:
-              if (this.bAckDelayed && this.ackCount == 0)
+              if (bAckDelayed && ackCount == 0)
               {
                 bDisconnect = true;
-                this.timerHeartBeat.Stop();
-                this.timerAck.Stop();
-                this.timerRetryResponse.Stop();
-                this.bAckDelayed = false;
+                timerHeartBeat.Stop();
+                timerAck.Stop();
+                timerRetryResponse.Stop();
+                bAckDelayed = false;
                 break;
               }
               break;
           }
           break;
       }
-      this.isEcrDisconnected = bDisconnect;
-      LowLevelProtocol.eRcvMsg = eReceivedMsg.E_NONE;
-      LowLevelProtocol.receivedData = (byte[]) null;
-      LowLevelProtocol.receivedSize = 0;
+      isEcrDisconnected = bDisconnect;
+      eRcvMsg = eReceivedMsg.E_NONE;
+      receivedData = (byte[]) null;
+      receivedSize = 0;
       return flag;
     }
 
     public void RequestStop()
     {
-      if (LowLevelProtocol._shouldStop || this.readThread == null)
+      if (_shouldStop || readThread == null)
         return;
-      LowLevelProtocol._shouldStop = true;
-      this.readThread.Abort();
-      this.readThread = (Thread) null;
+      _shouldStop = true;
+      readThread.Abort();
+      readThread = (Thread) null;
     }
 
     public void ReceiveData()
     {
-      while (!LowLevelProtocol._shouldStop)
+      while (!_shouldStop)
       {
-        this.COM.Ethernet_DataReceived();
+        COM.Ethernet_DataReceived();
         Thread.Sleep(100);
       }
     }
 
     private eReceivedMsg VerifyTypeMsgReceived()
     {
-      if (LowLevelProtocol.receivedData[0] == (byte) 17)
+      if (receivedData[0] == (byte) 17)
         return eReceivedMsg.E_HEARTBEAT;
       eReceivedMsg received;
-      if (this.COM.link_Type != "ETHERNET")
+      if (COM.link_Type != "ETHERNET")
       {
-        if ((int) LowLevelProtocol.receivedData[0] == (int) this.ACK[0])
+        if ((int) receivedData[0] == (int) ACK[0])
         {
-          if (this.COM.link_Type != "ETHERNET")
-            this.timerAck.Stop();
+          if (COM.link_Type != "ETHERNET")
+            timerAck.Stop();
           return eReceivedMsg.E_ACK;
         }
-        if ((int) LowLevelProtocol.receivedData[0] == (int) this.NACK[0])
+        if ((int) receivedData[0] == (int) NACK[0])
         {
-          if (this.COM.link_Type != "ETHERNET")
-            this.timerAck.Stop();
+          if (COM.link_Type != "ETHERNET")
+            timerAck.Stop();
           return eReceivedMsg.E_NACK;
         }
         if (false)
           return eReceivedMsg.E_NO_ACK;
         if (false)
           return eReceivedMsg.E_ERRORFRAME;
-        Dictionary<string, object> response = new ResponseMsg().extractResponse(LowLevelProtocol.receivedData, LowLevelProtocol.receivedSize);
+        Dictionary<string, object> response = new ResponseMsg().extractResponse(receivedData, receivedSize);
         if (response != null)
         {
           byte[] data = (byte[]) response["RESPONSEWSTXLRC"];
-          if ((int) (byte) response["LRC"] == this.converter.calculateLrc(data, "command") && LowLevelProtocol.receivedSize >= 3)
+          if ((int) (byte) response["LRC"] == converter.calculateLrc(data, "command") && receivedSize >= 3)
           {
-            LowLevelProtocol.msgResponse = (byte[]) response["MSG"];
+            msgResponse = (byte[]) response["MSG"];
             received = eReceivedMsg.E_CORRECTFRAME;
           }
           else
@@ -442,10 +421,10 @@ namespace ingenico
         else
           received = eReceivedMsg.E_ERRORFRAME;
       }
-      else if (LowLevelProtocol.receivedSize >= 2)
+      else if (receivedSize >= 2)
       {
-        LowLevelProtocol.msgResponse = new byte[LowLevelProtocol.receivedSize];
-        Array.Copy((Array) LowLevelProtocol.receivedData, (Array) LowLevelProtocol.msgResponse, LowLevelProtocol.receivedSize);
+        msgResponse = new byte[receivedSize];
+        Array.Copy((Array) receivedData, (Array) msgResponse, receivedSize);
         received = eReceivedMsg.E_CORRECTFRAME;
       }
       else

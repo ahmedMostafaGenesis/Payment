@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO.Ports;
 using System.Threading;
+using IngenicoPOS;
+
 
 namespace ingenico
 {
@@ -8,17 +10,44 @@ namespace ingenico
     {
        static bool _continue =true;
        static SerialPort _serialPort;
-
+       
     public static void Main()
+    {
+        //pos();
+        New();
+    }
+
+    private static void pos()
+    {
+        const string PORT = "COM3";  // Port of the POS Device (COM0 is just an example)
+
+        POS posDevice = new POS(PORT);
+
+        if ( posDevice.Connect() ) {
+            // We will charge the card for 100,00
+            var res = posDevice.Sale(10000);
+
+            if ( res.Success ) {
+                // Sale was successful :D
+            } else{
+                // Sale wasn't successful :(
+            }
+        } else {
+            // Device not connected :/
+        }
+    }
+    private static void New()
     {
         _continue = true;
         var communication = new Communication();
-        var protocol = new Protocol(communication);
-        protocol.request = new Request()
+        var protocol = new Protocol(communication)
         {
-            tnxCode = "Sale",
-            amount = "1000",
-            clerkId = "1",
+            request = new Request()
+            {
+                tnxCode = "Sale",
+                amount = "1000",
+                vasMode =  -1,
+            }
         };
         var stringComparer = StringComparer.OrdinalIgnoreCase;
 
@@ -32,7 +61,7 @@ namespace ingenico
                 {
                     _continue = false;
                 }
-                else if(stringComparer.Equals("send", message))
+                else if (stringComparer.Equals("send", message))
                 {
                     Console.WriteLine("Sending..");
                     if (!protocol.RequestApplyTransaction())
@@ -42,14 +71,14 @@ namespace ingenico
                 }
                 else
                 {
-                    
                 }
             }
-            else if(!protocol.StartConnection(communication))
+            else if (!protocol.StartConnection(communication))
             {
                 _continue = false;
             }
         }
+
         communication.Disconnect();
     }
 
@@ -216,6 +245,7 @@ namespace ingenico
     }
     public static Handshake SetPortHandshake(Handshake defaultPortHandshake)
     {
+        //02 30 30 1C 30 30 31 31 30 30 30 30 30 30 30 1C 30 31 35 30 03 37                                      
         string handshake;
 
         Console.WriteLine("Available Handshake options:");

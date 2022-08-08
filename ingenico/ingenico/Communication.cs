@@ -35,40 +35,38 @@ namespace ingenico
       {
         if (File.Exists("ingenico.exe.config"))
         {
-          this.ReadConfigFile();
+          ReadConfigFile();
         }
         else
         {
-          this.COMDefaultSerialSetting();
-          this.saveConfigInFile();
+          COMDefaultSerialSetting();
+          saveConfigInFile();
         }
       }
 
       public void COMDefaultSerialSetting()
       {
-        this.link_Type = "Serial";
-        this.port_Name = "COM3";
-        this.Baud_Rate = 115200;
-        this.ip_Address = "127.0.0.1";
-        this.ip_port = 9999;
+        link_Type = "Serial";
+        port_Name = "COM3";
+        Baud_Rate = 115200;
       }
 
       public void saveConfigInFile()
       {
         try
         {
-          System.Configuration.Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+          Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
           configuration.AppSettings.Settings.Remove("link_Type");
           configuration.AppSettings.Settings.Remove("port_Name");
           configuration.AppSettings.Settings.Remove("Baud_Rate");
           configuration.AppSettings.Settings.Remove("ip_Address");
           configuration.AppSettings.Settings.Remove("ip_port");
-          configuration.AppSettings.Settings.Add("link_Type", this.link_Type);
-          configuration.AppSettings.Settings.Add("port_Name", this.port_Name);
+          configuration.AppSettings.Settings.Add("link_Type", link_Type);
+          configuration.AppSettings.Settings.Add("port_Name", port_Name);
           string str1;
           try
           {
-            str1 = this.Baud_Rate.ToString();
+            str1 = Baud_Rate.ToString();
           }
           catch
           {
@@ -76,11 +74,11 @@ namespace ingenico
             Console.WriteLine("Error : Convert baudrate");
           }
           configuration.AppSettings.Settings.Add("Baud_Rate", str1);
-          configuration.AppSettings.Settings.Add("ip_Address", this.ip_Address);
+          configuration.AppSettings.Settings.Add("ip_Address", ip_Address);
           string str2;
           try
           {
-            str2 = this.ip_port.ToString();
+            str2 = ip_port.ToString();
           }
           catch
           {
@@ -101,27 +99,27 @@ namespace ingenico
       {
         try
         {
-          this.link_Type = ConfigurationManager.AppSettings["link_Type"];
-          this.port_Name = ConfigurationManager.AppSettings["port_Name"];
+          link_Type = ConfigurationManager.AppSettings["link_Type"];
+          port_Name = ConfigurationManager.AppSettings["port_Name"];
           string appSetting1 = ConfigurationManager.AppSettings["Baud_Rate"];
           try
           {
-            this.Baud_Rate = int.Parse(appSetting1);
+            Baud_Rate = int.Parse(appSetting1);
           }
           catch
           {
-            this.Baud_Rate = 19200;
+            Baud_Rate = 19200;
             Console.WriteLine("Error : Convert baudrate");
           }
-          this.ip_Address = ConfigurationManager.AppSettings["ip_Address"];
+          ip_Address = ConfigurationManager.AppSettings["ip_Address"];
           string appSetting2 = ConfigurationManager.AppSettings["ip_port"];
           try
           {
-            this.ip_port = int.Parse(appSetting2);
+            ip_port = int.Parse(appSetting2);
           }
           catch
           {
-            this.ip_port = 9999;
+            ip_port = 9999;
             Console.WriteLine("Error : Read IP port From Config file");
           }
         }
@@ -131,7 +129,7 @@ namespace ingenico
         }
       }
 
-      public string COMGetPortName() => this.port_Name.IndexOf("SAGEM") <= -1 ? this.port_Name : this.port_Name.Substring(0, this.port_Name.IndexOf(" – "));
+      public string COMGetPortName() => port_Name.IndexOf("SAGEM") <= -1 ? port_Name : port_Name.Substring(0, port_Name.IndexOf(" – "));
       
 
       public List<string> getOpenedPortNames()
@@ -144,7 +142,7 @@ namespace ingenico
         {
           try
           {
-            SerialPort serialPort = new SerialPort(portNames[index2], this.Baud_Rate, this.parity, this.Data_Bit, this.Stop_Bit);
+            SerialPort serialPort = new SerialPort(portNames[index2], Baud_Rate, parity, Data_Bit, Stop_Bit);
             serialPort.Open();
             strArray[index1] = portNames[index2];
             ++index1;
@@ -162,13 +160,13 @@ namespace ingenico
       public bool COMConfiguration()
       {
         bool flag = false;
-        if (this.link_Type != "ETHERNET")
+        if (link_Type != "ETHERNET")
         {
-          Communication.bSerial = true;
+          bSerial = true;
           try
           {
-            Communication.port = new SerialPort(this.COMGetPortName(), this.Baud_Rate, this.parity, this.Data_Bit, this.Stop_Bit);
-            if (Communication.port != null)
+            port = new SerialPort(COMGetPortName(), Baud_Rate, parity, Data_Bit, Stop_Bit);
+            if (port != null)
               flag = true;
           }
           catch
@@ -178,41 +176,41 @@ namespace ingenico
         }
         else
         {
-          Communication.bSerial = false;
-          Communication.tcpClient = new TcpClient();
-          if (Communication.tcpClient != null)
+          bSerial = false;
+          tcpClient = new TcpClient();
+          if (tcpClient != null)
             flag = true;
         }
         return flag;
       }
 
-      public bool StartReceiving() => this.bStartReceiving;
+      public bool StartReceiving() => bStartReceiving;
 
       private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
       {
-        if (!this.GetConnectStatus() || Communication.port == null || !Communication.port.IsOpen)
+        if (!GetConnectStatus() || port == null || !port.IsOpen)
           return;
-        if (Communication.port.BytesToRead == 0)
+        if (port.BytesToRead == 0)
           return;
         try
         {
-          byte[] numArray = new byte[this.maxDataSize];
+          byte[] numArray = new byte[maxDataSize];
           int index = 0;
           while (true)
           {
-            while (Communication.port.BytesToRead == 0 || index >= this.maxDataSize)
+            while (port.BytesToRead == 0 || index >= maxDataSize)
             {
               Thread.Sleep(90);
-              if (Communication.port.BytesToRead == 0 || index >= this.maxDataSize)
+              if (port.BytesToRead == 0 || index >= maxDataSize)
               {
-                Communication.ReceivedDataSize = index;
-                this.ReceivedData = numArray;
-                int receivedDataSize = Communication.ReceivedDataSize;
+                ReceivedDataSize = index;
+                ReceivedData = numArray;
+                int receivedDataSize = ReceivedDataSize;
                 return;
               }
             }
-            numArray[index] = (byte) this.ReceiveByte();
-            this.bStartReceiving = true;
+            numArray[index] = (byte) ReceiveByte();
+            bStartReceiving = true;
             ++index;
           }
         }
@@ -224,18 +222,18 @@ namespace ingenico
 
       public void Ethernet_DataReceived()
       {
-        byte[] buffer = new byte[this.maxDataSize];
-        if (Communication.tcpClient == null)
+        byte[] buffer = new byte[maxDataSize];
+        if (tcpClient == null)
           return;
-        if (!Communication.tcpClient.Connected)
+        if (!tcpClient.Connected)
           return;
         try
         {
-          int num = Communication.streamTcp.Read(buffer, 0, this.maxDataSize);
+          int num = streamTcp.Read(buffer, 0, maxDataSize);
           if (num == 0)
             return;
-          Communication.ReceivedDataSize = num;
-          this.ReceivedData = buffer;
+          ReceivedDataSize = num;
+          ReceivedData = buffer;
         }
         catch
         {
@@ -246,26 +244,26 @@ namespace ingenico
       public bool Connect()
       {
         bool flag = false;
-        if (Communication.bSerial)
+        if (bSerial)
         {
-          if (Communication.port != null)
+          if (port != null)
           {
-            if (!Communication.port.IsOpen)
+            if (!port.IsOpen)
             {
               try
               {
-                Communication.port.ReadTimeout = Communication.serialPortTimeOut;
-                Communication.port.Open();
+                port.ReadTimeout = serialPortTimeOut;
+                port.Open();
               }
               catch
               {
                 Console.WriteLine("Error opening serial port");
               }
               Thread.Sleep(100);
-              Communication.port.DiscardInBuffer();
-              Communication.port.DiscardOutBuffer();
-              Communication.port.DataReceived += new SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
-              flag = Communication.port.IsOpen;
+              port.DiscardInBuffer();
+              port.DiscardOutBuffer();
+              port.DataReceived += new SerialDataReceivedEventHandler(serialPort1_DataReceived);
+              flag = port.IsOpen;
             }
           }
           else
@@ -277,16 +275,16 @@ namespace ingenico
         {
           try
           {
-            Communication.tcpClient.Connect(this.ip_Address, this.ip_port);
+            tcpClient.Connect(ip_Address, ip_port);
           }
           catch
           {
             Console.WriteLine("Error Connecting TCP");
           }
           Thread.Sleep(5);
-          flag = Communication.tcpClient.Connected;
+          flag = tcpClient.Connected;
           if (flag)
-            Communication.streamTcp = (Stream) Communication.tcpClient.GetStream();
+            streamTcp = (Stream) tcpClient.GetStream();
         }
         return flag;
       }
@@ -294,17 +292,17 @@ namespace ingenico
       public bool Disconnect()
       {
         bool flag = false;
-        if (Communication.bSerial)
+        if (bSerial)
         {
-          if (Communication.port != null)
+          if (port != null)
           {
-            if (Communication.port.IsOpen)
+            if (port.IsOpen)
             {
               try
               {
-                Communication.port.DataReceived -= new SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
-                Communication.port.Close();
-                Communication.port = (SerialPort) null;
+                port.DataReceived -= new SerialDataReceivedEventHandler(serialPort1_DataReceived);
+                port.Close();
+                port = (SerialPort) null;
               }
               catch
               {
@@ -312,18 +310,18 @@ namespace ingenico
               }
             }
           }
-          if (Communication.port != null && !Communication.port.IsOpen)
+          if (port != null && !port.IsOpen)
             flag = true;
         }
         else
         {
-          if (Communication.tcpClient != null)
+          if (tcpClient != null)
           {
-            if (Communication.tcpClient.Connected)
+            if (tcpClient.Connected)
             {
               try
               {
-                Communication.tcpClient.Close();
+                tcpClient.Close();
               }
               catch
               {
@@ -331,7 +329,7 @@ namespace ingenico
               }
             }
           }
-          if (Communication.tcpClient != null && !Communication.tcpClient.Connected)
+          if (tcpClient != null && !tcpClient.Connected)
             flag = true;
         }
         return flag;
@@ -340,14 +338,14 @@ namespace ingenico
       public bool Send(byte[] buffer, int offset, int count)
       {
         bool flag = false;
-        if (this.GetConnectStatus())
+        if (GetConnectStatus())
         {
-          if (Communication.bSerial)
+          if (bSerial)
           {
             try
             {
-              Communication.port.WriteTimeout = 100;
-              Communication.port.Write(buffer, offset, count);
+              port.WriteTimeout = 100;
+              port.Write(buffer, offset, count);
               buffer.ToList().ForEach(c=>Console.Write(c));
               Console.WriteLine();
               flag = true;
@@ -361,8 +359,8 @@ namespace ingenico
           {
             try
             {
-              Communication.streamTcp.WriteTimeout = 1000;
-              Communication.streamTcp.Write(buffer, offset, count);
+              streamTcp.WriteTimeout = 1000;
+              streamTcp.Write(buffer, offset, count);
               flag = true;
             }
             catch
@@ -377,11 +375,11 @@ namespace ingenico
       public int ReceiveByte()
       {
         int num = 0;
-        if (Communication.bSerial)
+        if (bSerial)
         {
           try
           {
-            num = Communication.port.ReadByte();
+            num = port.ReadByte();
           }
           catch
           {
@@ -392,7 +390,7 @@ namespace ingenico
         {
           try
           {
-            num = Communication.streamTcp.ReadByte();
+            num = streamTcp.ReadByte();
           }
           catch
           {
@@ -404,17 +402,17 @@ namespace ingenico
 
       public byte[] Receive(out int recvdSize)
       {
-        recvdSize = Communication.ReceivedDataSize;
-        if (Communication.ReceivedDataSize != 0)
+        recvdSize = ReceivedDataSize;
+        if (ReceivedDataSize != 0)
         {
-          this.bStartReceiving = false;
-          Communication.ReceivedDataSize = 0;
+          bStartReceiving = false;
+          ReceivedDataSize = 0;
         }
-        return this.ReceivedData;
+        return ReceivedData;
       }
 
-      public bool GetConnectStatus() => Communication.bSerial ? Communication.port != null && Communication.port.IsOpen : Communication.tcpClient != null && Communication.tcpClient.Connected;
+      public bool GetConnectStatus() => bSerial ? port != null && port.IsOpen : tcpClient != null && tcpClient.Connected;
 
-      public int BytesInReceiveBuffer() => Communication.ReceivedDataSize;
+      public int BytesInReceiveBuffer() => ReceivedDataSize;
   }
 }

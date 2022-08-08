@@ -47,7 +47,7 @@ namespace ingenico
       {
         string str = "1C";
         if (asciiString.Length != 0)
-          str += this.ConvertToHex(asciiString);
+          str += ConvertToHex(asciiString);
         return str;
       }
 
@@ -55,159 +55,159 @@ namespace ingenico
       {
         string str1 = "";
         DataElement dataElement = new DataElement();
-        string str2 = str1 + this.ConvertToHex(szTnxType);
+        string str2 = str1 + ConvertToHex(szTnxType);
         if (tag >= 0)
         {
           string str3 = dataElement.FormatTagThreeDigit(tag);
-          str2 += this.FormatField(str3 + value.ToString());
+          str2 += FormatField(str3 + value.ToString());
         }
         return str2;
       }
 
       public string BuildRequest()
       {
-        string str1 = "";
-        DataElement dataElement = new DataElement();
-        string str2 = str1 + this.ConvertToHex(dataElement.Get_TransTypeTag(this.tnxCode));
-        if (!string.IsNullOrEmpty(this.amount))
+        var str1 = "";
+        var dataElement = new DataElement();
+        var str2 = str1 + ConvertToHex(dataElement.Get_TransTypeTag(tnxCode));
+        if (!string.IsNullOrEmpty(amount))
         {
-          string str3 = dataElement.FormatTagThreeDigit(1);
-          str2 += this.FormatField(str3 + this.amount);
+          var str3 = dataElement.FormatTagThreeDigit(1);
+          str2 += FormatField(str3 + amount);
         }
-        if (this.tenderType != null && this.tenderType != "None" && this.tenderType != "")
+        if (tenderType != null && tenderType != "None" && tenderType != "")
         {
-          string str4 = dataElement.FormatTagThreeDigit(2);
-          str2 += this.FormatField(str4 + dataElement.Get_TenderTypeTag(this.tenderType));
+          var str4 = dataElement.FormatTagThreeDigit(2);
+          str2 += FormatField(str4 + dataElement.Get_TenderTypeTag(tenderType));
         }
-        if (this.closeBatch > 0)
+        if (closeBatch > 0)
         {
-          string str5 = dataElement.FormatTagThreeDigit(7);
-          str2 += this.FormatField(str5 + this.closeBatch.ToString());
+          var str5 = dataElement.FormatTagThreeDigit(7);
+          str2 += FormatField(str5 + closeBatch);
         }
-        if (!string.IsNullOrEmpty(this.clerkId))
+        if (!string.IsNullOrEmpty(clerkId))
         {
-          string str6 = dataElement.FormatTagThreeDigit(3);
-          str2 += this.FormatField(str6 + this.clerkId);
+          var str6 = dataElement.FormatTagThreeDigit(3);
+          str2 += FormatField(str6 + clerkId);
         }
-        if (!string.IsNullOrEmpty(this.invoiceNumber))
+        if (!string.IsNullOrEmpty(invoiceNumber))
         {
-          string str7 = dataElement.FormatTagThreeDigit(4);
-          str2 += this.FormatField(str7 + this.invoiceNumber);
+          var str7 = dataElement.FormatTagThreeDigit(4);
+          str2 += FormatField(str7 + invoiceNumber);
         }
-        if (!string.IsNullOrEmpty(this.authorNumber))
+        if (!string.IsNullOrEmpty(authorNumber))
         {
-          string str8 = dataElement.FormatTagThreeDigit(5);
-          str2 += this.FormatField(str8 + this.authorNumber);
+          var str8 = dataElement.FormatTagThreeDigit(5);
+          str2 += FormatField(str8 + authorNumber);
         }
-        if (!string.IsNullOrEmpty(this.origSeqNumber))
+        if (!string.IsNullOrEmpty(origSeqNumber))
         {
-          string str9 = dataElement.FormatTagThreeDigit(112);
-          str2 += this.FormatField(str9 + this.origSeqNumber);
+          var str9 = dataElement.FormatTagThreeDigit(112);
+          str2 += FormatField(str9 + origSeqNumber);
         }
-        if (!string.IsNullOrEmpty(this.origRefNumber))
+        if (!string.IsNullOrEmpty(origRefNumber))
         {
-          string str10 = dataElement.FormatTagThreeDigit(6);
-          str2 += this.FormatField(str10 + this.origRefNumber);
+          var str10 = dataElement.FormatTagThreeDigit(6);
+          str2 += FormatField(str10 + origRefNumber);
         }
-        if (!string.IsNullOrEmpty(this.traceNum))
+        if (!string.IsNullOrEmpty(traceNum))
         {
-          string str11 = dataElement.FormatTagThreeDigit(20);
-          str2 += this.FormatField(str11 + this.traceNum);
+          var str11 = dataElement.FormatTagThreeDigit(20);
+          str2 += FormatField(str11 + traceNum);
         }
-        if (!string.IsNullOrEmpty(this.reprintType))
+        if (!string.IsNullOrEmpty(reprintType))
         {
-          string str12 = dataElement.FormatTagThreeDigit(50);
-          str2 += this.FormatField(str12 + this.reprintType);
+          var str12 = dataElement.FormatTagThreeDigit(50);
+          str2 += FormatField(str12 + reprintType);
         }
-        if (this.parameterType > 0)
+        if (parameterType > 0)
         {
-          string str13 = dataElement.FormatTagThreeDigit(51);
-          str2 += this.FormatField(str13 + this.parameterType.ToString());
+          var str13 = dataElement.FormatTagThreeDigit(51);
+          str2 += FormatField(str13 + parameterType.ToString());
         }
-        if (!string.IsNullOrEmpty(this.forcedUP))
+        if (!string.IsNullOrEmpty(forcedUP))
         {
-          string str14 = dataElement.FormatTagThreeDigit(8);
-          str2 += this.FormatField(str14 + this.forcedUP);
+          var str14 = dataElement.FormatTagThreeDigit(8);
+          str2 += FormatField(str14 + forcedUP);
         }
-        if (!string.IsNullOrEmpty(this.custRef))
+        if (!string.IsNullOrEmpty(custRef))
         {
-          string str15 = dataElement.FormatTagThreeDigit(10);
-          str2 += this.FormatField(str15 + this.custRef);
+          var str15 = dataElement.FormatTagThreeDigit(10);
+          str2 += FormatField(str15 + custRef);
         }
-        if (!string.IsNullOrEmpty(this.Dcc))
+        if (!string.IsNullOrEmpty(Dcc))
         {
-          string str16 = dataElement.FormatTagThreeDigit(9);
-          str2 += this.FormatField(str16 + this.Dcc);
+          var str16 = dataElement.FormatTagThreeDigit(9);
+          str2 += FormatField(str16 + Dcc);
         }
-        if (!string.IsNullOrEmpty(this.refNum))
+        if (!string.IsNullOrEmpty(refNum))
         {
-          string str17 = dataElement.FormatTagThreeDigit(11);
-          str2 += this.FormatField(str17 + this.refNum);
+          var str17 = dataElement.FormatTagThreeDigit(11);
+          str2 += FormatField(str17 + refNum);
         }
-        if (!string.IsNullOrEmpty(this.PAN))
+        if (!string.IsNullOrEmpty(PAN))
         {
-          string str18 = dataElement.FormatTagThreeDigit(12);
-          str2 += this.FormatField(str18 + this.PAN);
+          var str18 = dataElement.FormatTagThreeDigit(12);
+          str2 += FormatField(str18 + PAN);
         }
-        if (!string.IsNullOrEmpty(this.tranType))
+        if (!string.IsNullOrEmpty(tranType))
         {
-          string str19 = dataElement.FormatTagThreeDigit(13);
-          str2 += this.FormatField(str19 + this.tranType);
+          var str19 = dataElement.FormatTagThreeDigit(13);
+          str2 += FormatField(str19 + tranType);
         }
-        if (!string.IsNullOrEmpty(this.specificData))
+        if (!string.IsNullOrEmpty(specificData))
         {
-          string str20 = dataElement.FormatTagThreeDigit(14);
-          str2 += this.FormatField(str20 + this.specificData);
+          var str20 = dataElement.FormatTagThreeDigit(14);
+          str2 += FormatField(str20 + specificData);
         }
-        if (!string.IsNullOrEmpty(this.formattedRcpt))
+        if (!string.IsNullOrEmpty(formattedRcpt))
         {
-          string str21 = dataElement.FormatTagThreeDigit(15);
-          str2 += this.FormatField(str21 + this.formattedRcpt);
+          var str21 = dataElement.FormatTagThreeDigit(15);
+          str2 += FormatField(str21 + formattedRcpt);
         }
-        if (!string.IsNullOrEmpty(this.RcptName))
+        if (!string.IsNullOrEmpty(RcptName))
         {
-          string str22 = dataElement.FormatTagThreeDigit(52);
-          str2 += this.FormatField(str22 + this.RcptName);
+          var str22 = dataElement.FormatTagThreeDigit(52);
+          str2 += FormatField(str22 + RcptName);
         }
-        if (!string.IsNullOrEmpty(this.merchURL))
+        if (!string.IsNullOrEmpty(merchURL))
         {
-          string str23 = dataElement.FormatTagThreeDigit(30);
-          str2 += this.FormatField(str23 + this.merchURL);
+          var str23 = dataElement.FormatTagThreeDigit(30);
+          str2 += FormatField(str23 + merchURL);
         }
-        if (!string.IsNullOrEmpty(this.merchID))
+        if (!string.IsNullOrEmpty(merchID))
         {
-          string str24 = dataElement.FormatTagThreeDigit(31);
-          str2 += this.FormatField(str24 + this.merchID);
+          var str24 = dataElement.FormatTagThreeDigit(31);
+          str2 += FormatField(str24 + merchID);
         }
-        if (!string.IsNullOrEmpty(this.filterCateg))
+        if (!string.IsNullOrEmpty(filterCateg))
         {
-          string str25 = dataElement.FormatTagThreeDigit(32);
-          str2 += this.FormatField(str25 + this.filterCateg);
+          var str25 = dataElement.FormatTagThreeDigit(32);
+          str2 += FormatField(str25 + filterCateg);
         }
-        if (!string.IsNullOrEmpty(this.encryptReq))
+        if (!string.IsNullOrEmpty(encryptReq))
         {
-          string str26 = dataElement.FormatTagThreeDigit(33);
-          str2 += this.FormatField(str26 + this.encryptReq);
+          var str26 = dataElement.FormatTagThreeDigit(33);
+          str2 += FormatField(str26 + encryptReq);
         }
-        if (!string.IsNullOrEmpty(this.vasEccKey))
+        if (!string.IsNullOrEmpty(vasEccKey))
         {
-          string str27 = dataElement.FormatTagThreeDigit(36);
-          str2 += this.FormatField(str27 + this.vasEccKey);
+          var str27 = dataElement.FormatTagThreeDigit(36);
+          str2 += FormatField(str27 + vasEccKey);
         }
-        if (this.vasMode >= 0)
+        if (vasMode >= 0)
         {
-          string str28 = dataElement.FormatTagThreeDigit(34);
-          str2 += this.FormatField(str28 + this.vasMode.ToString());
+          var str28 = dataElement.FormatTagThreeDigit(34);
+          str2 += FormatField(str28 + vasMode);
         }
-        if (!string.IsNullOrEmpty(this.merchIndex))
+        if (!string.IsNullOrEmpty(merchIndex))
         {
-          string str29 = dataElement.FormatTagThreeDigit(35);
-          str2 += this.FormatField(str29 + this.merchIndex);
+          var str29 = dataElement.FormatTagThreeDigit(35);
+          str2 += FormatField(str29 + merchIndex);
         }
-        if (!string.IsNullOrEmpty(this.finalAmount))
+        if (!string.IsNullOrEmpty(finalAmount))
         {
-          string str30 = dataElement.FormatTagThreeDigit(16);
-          str2 += this.FormatField(str30 + this.finalAmount);
+          var str30 = dataElement.FormatTagThreeDigit(16);
+          str2 += FormatField(str30 + finalAmount);
         }
         return str2;
       }
@@ -215,7 +215,7 @@ namespace ingenico
       public string BuildPrintResponse(string szEcrPrintingStatus)
       {
         DataElement dataElement = new DataElement();
-        return "" + this.ConvertToHex("99") + this.ConvertToHex(szEcrPrintingStatus);
+        return "" + ConvertToHex("99") + ConvertToHex(szEcrPrintingStatus);
       }
     }
 }

@@ -1,0 +1,30 @@
+8/9/2022 10:15:08 AM:310 -> Couldn't play sound.
+8/9/2022 10:13:17 AM:985 -> Couldn't play sound.
+8/9/2022 10:12:21 AM:856 -> Couldn't play sound.
+8/9/2022 10:07:33 AM:300 -> Couldn't play sound.
+8/9/2022 10:04:06 AM:108 -> Couldn't play sound.
+8/9/2022 10:02:35 AM:810 -> Couldn't play sound.
+8/9/2022 10:01:44 AM:766 -> Couldn't play sound.
+8/9/2022 9:58:01 AM:622 -> Couldn't play sound.
+8/9/2022 9:56:38 AM:2 -> Couldn't play sound.
+8/9/2022 9:55:27 AM:562 -> Couldn't play sound.
+8/9/2022 9:51:31 AM:725 -> Couldn't play sound.
+8/8/2022 4:58:29 PM:586 -> Couldn't play sound.
+8/8/2022 4:57:44 PM:113 -> Couldn't play sound.
+8/8/2022 4:57:39 PM:805 -> Couldn't play sound.
+8/8/2022 4:57:35 PM:549 -> Couldn't play sound.
+8/8/2022 4:27:16 PM:573 -> Couldn't play sound.
+8/8/2022 4:27:16 PM:539 -> 68/8/2022 4:26:34 PM:673 -> Le thread d'eriture a ete relance
+8/8/2022 4:26:34 PM:671 -> 558/8/2022 4:26:34 PM:671 -> 38/8/2022 4:26:34 PM:670 -> 488/8/2022 4:26:34 PM:670 -> 538/8/2022 4:26:34 PM:670 -> 498/8/2022 4:26:34 PM:670 -> 488/8/2022 4:26:34 PM:670 -> 288/8/2022 4:26:34 PM:670 -> 488/8/2022 4:26:34 PM:670 -> 488/8/2022 4:26:34 PM:670 -> 488/8/2022 4:26:34 PM:670 -> 498/8/2022 4:26:34 PM:670 -> 498/8/2022 4:26:34 PM:670 -> 488/8/2022 4:26:34 PM:670 -> 488/8/2022 4:26:34 PM:670 -> 288/8/2022 4:26:34 PM:670 -> 488/8/2022 4:26:34 PM:670 -> 488/8/2022 4:26:34 PM:669 -> 28/8/2022 4:25:49 PM:278 -> 488/8/2022 4:25:49 PM:277 -> 28/8/2022 4:25:39 PM:170 -> Couldn't play sound.
+8/8/2022 4:25:39 PM:152 -> 68/8/2022 4:25:36 PM:713 -> 558/8/2022 4:25:36 PM:713 -> 38/8/2022 4:25:36 PM:712 -> 488/8/2022 4:25:36 PM:712 -> 538/8/2022 4:25:36 PM:712 -> 498/8/2022 4:25:36 PM:712 -> 488/8/2022 4:25:36 PM:712 -> 288/8/2022 4:25:36 PM:712 -> 488/8/2022 4:25:36 PM:712 -> 488/8/2022 4:25:36 PM:712 -> 488/8/2022 4:25:36 PM:712 -> 498/8/2022 4:25:36 PM:712 -> 498/8/2022 4:25:36 PM:712 -> 488/8/2022 4:25:36 PM:712 -> 488/8/2022 4:25:36 PM:712 -> 288/8/2022 4:25:36 PM:712 -> 488/8/2022 4:25:36 PM:711 -> 488/8/2022 4:25:36 PM:711 -> 28/8/2022 4:22:51 PM:39 -> Couldn't play sound.
+8/8/2022 4:22:51 PM:33 -> Problem updateCfgXmlListType
+8/8/2022 4:22:51 PM:33 -> Le thread d'eriture a ete relance
+8/8/2022 4:22:51 PM:32 -> Problem updateTagXmlListType
+8/8/2022 4:22:51 PM:31 -> Problem updateCfgXmlListType
+8/8/2022 4:22:51 PM:30 -> Problem updateTagXmlListType
+8/8/2022 4:22:48 PM:628 -> Problem updateCfgXmlListType
+8/8/2022 4:22:48 PM:628 -> Problem updateTagXmlListType
+8/8/2022 4:22:48 PM:452 -> Problem updateCfgXmlListType
+8/8/2022 4:22:48 PM:450 -> Problem updateTagXmlListType
+8/8/2022 4:22:16 PM:308 -> Problem updateListTransactionType
+8/8/2022 4:22:16 PM:306 -> Problem updateListTenderType

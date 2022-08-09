@@ -1,0 +1,11 @@
+C:\Users\Genesis Egypt\RiderProjects\WINTSI\WINTSI\bin\Debug\WINTSI.exe.config
+C:\Users\Genesis Egypt\RiderProjects\WINTSI\WINTSI\bin\Debug\WINTSI.exe
+C:\Users\Genesis Egypt\RiderProjects\WINTSI\WINTSI\bin\Debug\WINTSI.pdb
+C:\Users\Genesis Egypt\RiderProjects\WINTSI\WINTSI\obj\Debug\WINTSI.csproj.AssemblyReference.cache
+C:\Users\Genesis Egypt\RiderProjects\WINTSI\WINTSI\obj\Debug\WINTSI.csproj.CoreCompileInputs.cache
+C:\Users\Genesis Egypt\RiderProjects\WINTSI\WINTSI\obj\Debug\WINTSI.exe
+C:\Users\Genesis Egypt\RiderProjects\WINTSI\WINTSI\obj\Debug\WINTSI.pdb
+C:\Users\Genesis Egypt\RiderProjects\WINTSI\WINTSI\obj\Debug\WINTSI.csproj.GenerateResource.cache
+C:\Users\Genesis Egypt\RiderProjects\WINTSI\WINTSI\obj\Debug\WINTSI.Properties.Face.resources
+C:\Users\Genesis Egypt\RiderProjects\WINTSI\WINTSI\obj\Debug\WINTSI.Properties.Resources.resources
+C:\Users\Genesis Egypt\RiderProjects\WINTSI\WINTSI\obj\Debug\WINTSI.Properties.Settings.resources

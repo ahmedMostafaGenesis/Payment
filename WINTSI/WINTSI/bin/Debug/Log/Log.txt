@@ -1,0 +1,6 @@
+8/9/2022 10:06:56 AM:979 -> Problem updateCfgXmlListType
+8/9/2022 10:06:56 AM:979 -> Problem updateTagXmlListType
+8/9/2022 10:06:56 AM:798 -> Problem updateCfgXmlListType
+8/9/2022 10:06:56 AM:797 -> Problem updateTagXmlListType
+8/9/2022 10:06:56 AM:794 -> Problem updateListTransactionType
+8/9/2022 10:06:56 AM:792 -> Problem updateListTenderType

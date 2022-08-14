@@ -69,6 +69,7 @@ public class Communication
 		BaudRate = 19200;
 		IpAddress = "127.0.0.1";
 		IpPort = 9999;
+		
 	}
 
 	public void SaveConfigInFile()
@@ -387,6 +388,7 @@ public class Communication
 				_port.WriteTimeout = 100;
 				var text = "";
 				buffer.ToList().ForEach(c=> text+=c);
+				Console.WriteLine(count);
 				Console.WriteLine(text);
 				_port.Write(buffer, offset, count);
 				result = true;

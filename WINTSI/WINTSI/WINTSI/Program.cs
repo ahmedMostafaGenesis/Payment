@@ -12,6 +12,7 @@ namespace Ingenico
 		[STAThread]
 		private static void Main()
 		{
+			
 			try
 			{
 				_myLogListener = new LogListener("Log\\Log.txt");
@@ -37,7 +38,9 @@ namespace Ingenico
 
 		private static void CreateFakeRequest()
 		{
-			_running.SendTheRequest(9999999, 1);
+			_running.SendTheRequest(10000, 1);
+			//SocketListener.StartServer(_running.Com);
+			SocketClient.StartClient(_running.Com);
 		}
 	}
 }

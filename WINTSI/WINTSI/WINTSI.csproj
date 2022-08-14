@@ -59,6 +59,8 @@
         <Compile Include="IPAddressControlLib\NativeMethods.cs" />
         <Compile Include="IPAddressControlLib\Selection.cs" />
         <Compile Include="IPAddressControlLib\TextChangedEventArgs.cs" />
+        <Compile Include="Networking Socket\SocketClient.cs" />
+        <Compile Include="Networking Socket\SocketListener.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Properties\Face.Designer.cs">
           <DesignTime>True</DesignTime>

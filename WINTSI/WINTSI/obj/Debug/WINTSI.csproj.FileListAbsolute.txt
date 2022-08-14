@@ -9,3 +9,14 @@ C:\Users\Genesis Egypt\RiderProjects\WINTSI\WINTSI\obj\Debug\WINTSI.csproj.Gener
 C:\Users\Genesis Egypt\RiderProjects\WINTSI\WINTSI\obj\Debug\WINTSI.Properties.Face.resources
 C:\Users\Genesis Egypt\RiderProjects\WINTSI\WINTSI\obj\Debug\WINTSI.Properties.Resources.resources
 C:\Users\Genesis Egypt\RiderProjects\WINTSI\WINTSI\obj\Debug\WINTSI.Properties.Settings.resources
+E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\WINTSI.exe.config
+E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\WINTSI.exe
+E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\WINTSI.pdb
+E:\unity projects\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.csproj.AssemblyReference.cache
+E:\unity projects\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.Properties.Face.resources
+E:\unity projects\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.Properties.Resources.resources
+E:\unity projects\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.Properties.Settings.resources
+E:\unity projects\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.csproj.GenerateResource.cache
+E:\unity projects\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.csproj.CoreCompileInputs.cache
+E:\unity projects\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.exe
+E:\unity projects\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.pdb

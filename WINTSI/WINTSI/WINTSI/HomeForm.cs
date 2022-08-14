@@ -49,7 +49,7 @@ namespace Ingenico
 
 		public readonly Communication Com;
 
-		private readonly System.Windows.Forms.Timer timerLatePrintResp = new System.Windows.Forms.Timer();
+		private readonly System.Windows.Forms.Timer timerLatePrintResp = new();
 
 		private readonly int iParamType;
 
@@ -822,7 +822,7 @@ namespace Ingenico
 			txtMerchIndex.Text = "";
 			textEccKey.Text = "";
 			chkFormattedRcpt.Checked = false;
-			if (tnxType.Text == "Void" || tnxType.Text == "Pre-Auth Comp" || tnxType.Text == "Reprint Receipt")
+			if (tnxType.Text is "Void" or "Pre-Auth Comp" or "Reprint Receipt")
 			{
 				searchAmount.Text = "$_.__";
 				searchAmount.Tag = "0";
@@ -1159,25 +1159,25 @@ namespace Ingenico
 		public void SendTheRequest(int requestAmount, int requestClerkId)
 		{
 			var dataElement = new DataElement();
-			Cursor = Cursors.WaitCursor;
-			rxBufferData.Clear();
-			rxBufferPrint.Clear();
-			merchImgBytesBuffer = new List<byte[]>();
-			custImgBytesBuffer = new List<byte[]>();
-			formatRcptImgStringBuffer = new List<byte[]>();
-			merchHtmlStringBuffer = new List<string>();
-			custHtmlStringBuffer = new List<string>();
-			formatRcptHtmlStringBuffer = new List<string>();
-			if (imgReceiptViewerForm != null)
-			{
-				imgReceiptViewerForm.Close();
-				imgReceiptViewerForm = null;
-			}
-			if (htmlReceiptViewerForm != null)
-			{
-				htmlReceiptViewerForm.Close();
-				htmlReceiptViewerForm = null;
-			}
+			// Cursor = Cursors.WaitCursor;
+			// rxBufferData.Clear();
+			// rxBufferPrint.Clear();
+			// merchImgBytesBuffer = new List<byte[]>();
+			// custImgBytesBuffer = new List<byte[]>();
+			// formatRcptImgStringBuffer = new List<byte[]>();
+			// merchHtmlStringBuffer = new List<string>();
+			// custHtmlStringBuffer = new List<string>();
+			// formatRcptHtmlStringBuffer = new List<string>();
+			// if (imgReceiptViewerForm != null)
+			// {
+			// 	imgReceiptViewerForm.Close();
+			// 	imgReceiptViewerForm = null;
+			// }
+			// if (htmlReceiptViewerForm != null)
+			// {
+			// 	htmlReceiptViewerForm.Close();
+			// 	htmlReceiptViewerForm = null;
+			// }
 			var request = new Request();
 			currentTrxType = "";
 			bScriptStarted = false;
@@ -1409,7 +1409,6 @@ namespace Ingenico
 		private void ExecuteCommand(Command command)
 		{
 			currentTrxType = "";
-			var text = "";
 			Cursor = Cursors.WaitCursor;
 			merchImgBytesBuffer = new List<byte[]>();
 			custImgBytesBuffer = new List<byte[]>();
@@ -1431,7 +1430,7 @@ namespace Ingenico
 			}
 			var request = new Request();
 			currentTrxType = "";
-			text = (request.tnxCode = command.Label);
+			var text = request.tnxCode = command.Label;
 			currentTrxType = new DataElement().Get_TransTypeTag(text);
 			tnxType.Enabled = true;
 			tnxType.Text = text;
@@ -1544,7 +1543,7 @@ namespace Ingenico
 					InitializeContext();
 				}
 			}
-			text = "";
+
 			Cursor = Cursors.Default;
 		}
 
@@ -1570,8 +1569,7 @@ namespace Ingenico
 						{
 							text = ">>> ECR: Part of Report";
 							applicationProtocol.PrintingResponseMessage("0");
-							var list = new List<Dictionary<int, string>>();
-							list = DisplayResponseMsg("Report", rxBufferPrint);
+							var list = DisplayResponseMsg("Report", rxBufferPrint);
 							listDicoOfReport.AddRange(list);
 							rxBufferPrint.Clear();
 						}
@@ -1596,7 +1594,7 @@ namespace Ingenico
 							}
 							else if (NokPrintRadioButton.Checked)
 							{
-								var szPrintingStatus = "1";
+								const string szPrintingStatus = "1";
 								text = ">>> ECR: Printing Failure on ECR";
 								applicationProtocol.PrintingResponseMessage(szPrintingStatus);
 							}
@@ -2014,11 +2012,11 @@ namespace Ingenico
 			}
 		}
 
-		private bool IsPngImage(string sToExtract)
+		private static bool IsPngImage(string sToExtract)
 		{
-			var text = "iVBORw0KGgo";
+			const string text = "iVBORw0KGgo";
 			var result = false;
-			var num = 0;
+			const int num = 0;
 			if (sToExtract.Length >= text.Length && string.Compare(sToExtract, num, text, num, text.Length) == 0)
 			{
 				result = true;
@@ -2026,7 +2024,7 @@ namespace Ingenico
 			return result;
 		}
 
-		private bool IsHtmlRcpt(string sToExtract)
+		private static bool IsHtmlRcpt(string sToExtract)
 		{
 			const string text = "PCFET0NUWVBFIGh0bWw+";
 			var result = false;
@@ -2202,7 +2200,7 @@ namespace Ingenico
 			}
 		}
 
-		private void OpenUserManual()
+		private static void OpenUserManual()
 		{
 			try
 			{
@@ -2214,12 +2212,12 @@ namespace Ingenico
 			}
 		}
 
-		private void userManualToolStripMenuItem_Click(object sender, EventArgs e)
+		private static void userManualToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			OpenUserManual();
 		}
 
-		private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+		private static void aboutToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			new AboutApplication().ShowDialog();
 		}
@@ -2418,7 +2416,7 @@ namespace Ingenico
 			}
 		}
 
-		private bool VerifyXmlConfigFile(string fileName)
+		private static bool VerifyXmlConfigFile(string fileName)
 		{
 			var xmlDocument = new XmlDocument();
 			var xmlTextReader = new XmlTextReader(fileName);

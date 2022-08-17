@@ -23,7 +23,8 @@ namespace Ingenico
 				Application.EnableVisualStyles();
 				Application.SetCompatibleTextRenderingDefault(defaultValue: false);
 				_running = new HomeForm();
-				CreateFakeRequest();
+				StartServer();
+				//StartClient();
 				//Application.Run(Running);
 
 			}
@@ -36,11 +37,20 @@ namespace Ingenico
 
 		}
 
-		private static void CreateFakeRequest()
+
+		private static void StartServer()
 		{
-			_running.SendTheRequest(10000, 1);
-			//SocketListener.StartServer(_running.Com);
+			SocketListener.StartServer(_running.Com);
+
+		}		
+		private static void StartClient()
+		{
 			SocketClient.StartClient(_running.Com);
+
+		}
+		private static void CreateFakeRequest(int amount)
+		{
+			_running.SendTheRequest(amount, 1);
 		}
 	}
 }

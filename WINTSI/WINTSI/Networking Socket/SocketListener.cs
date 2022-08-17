@@ -26,30 +26,33 @@ public static class SocketListener
             // Specify how many requests a Socket can listen before it gives Server busy response.
             // We will listen 10 requests at a time
             listener.Listen(10);
-
-            Console.WriteLine(@"Waiting for a connection...");
-            var handler = listener.Accept();
-
-             // Incoming data from the client.
-             string data = null;
-
-             while (true)
+            while (true)
             {
-                var bytes = new byte[1024];
-                var bytesRec = handler.Receive(bytes);
-                data += Encoding.ASCII.GetString(bytes, 0, bytesRec);
-                if (data.IndexOf("<EOF>", StringComparison.Ordinal) > -1)
+                Console.WriteLine(@"Waiting for a connection...");
+                var handler = listener.Accept();
+
+                // Incoming data from the client.
+                string data = null;
+
+                while (true)
                 {
-                    break;
+                    var bytes = new byte[1024];
+                    var bytesRec = handler.Receive(bytes);
+                    data += Encoding.ASCII.GetString(bytes, 0, bytesRec);
+                    if (data.IndexOf("<EOF>", StringComparison.Ordinal) > -1)
+                    {
+                        break;
+                    }
                 }
+
+                Console.WriteLine(@"Text received : {0}", data);
+
+                var msg = Encoding.ASCII.GetBytes("I Got your Message");
+                handler.Send(msg);
+                handler.Shutdown(SocketShutdown.Both);
+                handler.Close();
             }
-
-            Console.WriteLine(@"Text received : {0}", data);
-
-            var msg = Encoding.ASCII.GetBytes(data);
-            handler.Send(msg);
-            handler.Shutdown(SocketShutdown.Both);
-            handler.Close();
+  
         }
         catch (Exception e)
         {

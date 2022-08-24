@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
+using WINTSI.WepSocket;
 
 namespace Ingenico
 
@@ -24,7 +25,6 @@ namespace Ingenico
 				Application.SetCompatibleTextRenderingDefault(defaultValue: false);
 				_running = new HomeForm();
 				StartServer();
-				//StartClient();
 				//Application.Run(Running);
 
 			}
@@ -40,15 +40,9 @@ namespace Ingenico
 
 		private static void StartServer()
 		{
-			SocketListener.StartServer(_running.Com);
-
-		}		
-		private static void StartClient()
-		{
-			SocketClient.StartClient(_running.Com);
-
+			Server.StartServer(_running.Com);
 		}
-		private static void CreateFakeRequest(int amount)
+		public static void CreateRequest(int amount)
 		{
 			_running.SendTheRequest(amount, 1);
 		}

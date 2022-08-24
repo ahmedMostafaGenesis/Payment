@@ -1,13 +1,4 @@
-8/14/2022 2:05:23 PM:245 -> Problem updateCfgXmlListType
-8/14/2022 2:05:23 PM:245 -> Problem updateTagXmlListType
-8/14/2022 2:05:23 PM:73 -> Le thread d'eriture a ete relance
-8/14/2022 2:05:23 PM:73 -> Problem updateCfgXmlListType
-8/14/2022 2:05:23 PM:73 -> Problem updateTagXmlListType
-8/14/2022 2:05:23 PM:57 -> Problem updateListTransactionType
-8/14/2022 2:05:23 PM:57 -> Problem updateListTenderType
-8/9/2022 10:06:56 AM:979 -> Problem updateCfgXmlListType
-8/9/2022 10:06:56 AM:979 -> Problem updateTagXmlListType
-8/9/2022 10:06:56 AM:798 -> Problem updateCfgXmlListType
-8/9/2022 10:06:56 AM:797 -> Problem updateTagXmlListType
-8/9/2022 10:06:56 AM:794 -> Problem updateListTransactionType
-8/9/2022 10:06:56 AM:792 -> Problem updateListTenderType
+8/24/2022 5:29:18 PM:798 -> Error : Read IP port From Config file
+8/24/2022 5:29:18 PM:797 -> Error : Convert baudRate
+8/24/2022 5:29:01 PM:193 -> Error : Read IP port From Config file
+8/24/2022 5:29:01 PM:192 -> Error : Convert baudRate

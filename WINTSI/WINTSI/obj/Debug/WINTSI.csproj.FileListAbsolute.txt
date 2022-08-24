@@ -10,3 +10,15 @@ C:\Users\Ahmed\Documents\GitHub\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.csproj.Ge
 C:\Users\Ahmed\Documents\GitHub\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.csproj.CoreCompileInputs.cache
 C:\Users\Ahmed\Documents\GitHub\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.exe
 C:\Users\Ahmed\Documents\GitHub\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.pdb
+C:\Users\Ahmed\Documents\GitHub\Payment\WINTSI\WINTSI\bin\Debug\log4net.dll
+C:\Users\Ahmed\Documents\GitHub\Payment\WINTSI\WINTSI\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Ahmed\Documents\GitHub\Payment\WINTSI\WINTSI\bin\Debug\SuperSocket.Common.dll
+C:\Users\Ahmed\Documents\GitHub\Payment\WINTSI\WINTSI\bin\Debug\SuperSocket.SocketBase.dll
+C:\Users\Ahmed\Documents\GitHub\Payment\WINTSI\WINTSI\bin\Debug\SuperSocket.SocketEngine.dll
+C:\Users\Ahmed\Documents\GitHub\Payment\WINTSI\WINTSI\bin\Debug\SuperWebSocket.dll
+C:\Users\Ahmed\Documents\GitHub\Payment\WINTSI\WINTSI\bin\Debug\log4net.xml
+C:\Users\Ahmed\Documents\GitHub\Payment\WINTSI\WINTSI\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Ahmed\Documents\GitHub\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.csproj.CopyComplete
+C:\Users\Ahmed\Documents\GitHub\Payment\WINTSI\WINTSI\bin\Debug\SuperSocket.ClientEngine.dll
+C:\Users\Ahmed\Documents\GitHub\Payment\WINTSI\WINTSI\bin\Debug\SuperSocket.Facility.dll
+C:\Users\Ahmed\Documents\GitHub\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.exe.config

@@ -1,3 +1,21 @@
+8/28/2022 4:20:22 PM:9 -> Couldn't play sound.
+8/28/2022 4:19:09 PM:414 -> Couldn't play sound.
+8/28/2022 4:13:29 PM:556 -> Couldn't play sound.
+8/28/2022 4:01:42 PM:960 -> Couldn't play sound.
+8/28/2022 4:00:58 PM:469 -> Couldn't play sound.
+8/28/2022 3:59:51 PM:444 -> Couldn't play sound.
+8/28/2022 3:56:03 PM:481 -> Couldn't play sound.
+8/28/2022 3:52:38 PM:555 -> Couldn't play sound.
+8/28/2022 3:48:20 PM:180 -> Couldn't play sound.
+8/28/2022 3:46:49 PM:353 -> Couldn't play sound.
+8/28/2022 3:41:52 PM:677 -> Couldn't play sound.
+8/28/2022 3:36:37 PM:363 -> Couldn't play sound.
+8/28/2022 3:34:59 PM:362 -> Couldn't play sound.
+8/28/2022 3:29:36 PM:853 -> Couldn't play sound.
+8/28/2022 3:29:17 PM:885 -> Couldn't play sound.
+8/28/2022 3:05:46 PM:199 -> Error config serial port
+8/28/2022 3:05:45 PM:828 -> Error : Read IP port From Config file
+8/28/2022 3:05:45 PM:827 -> Error : Convert baudRate
 8/24/2022 5:29:18 PM:798 -> Error : Read IP port From Config file
 8/24/2022 5:29:18 PM:797 -> Error : Convert baudRate
 8/24/2022 5:29:01 PM:193 -> Error : Read IP port From Config file

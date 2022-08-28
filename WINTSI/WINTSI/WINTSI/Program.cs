@@ -25,7 +25,7 @@ namespace Ingenico
 				Application.SetCompatibleTextRenderingDefault(defaultValue: false);
 				_running = new HomeForm();
 				StartServer();
-				//Application.Run(Running);
+				//Application.Run(_running);
 
 			}
 			catch (Exception e)
@@ -41,6 +41,7 @@ namespace Ingenico
 		private static void StartServer()
 		{
 			Server.StartServer(_running.Com);
+			CreateRequest(1000);
 		}
 		public static void CreateRequest(int amount)
 		{

@@ -7,10 +7,10 @@ using Ingenico;
 using SuperWebSocket;
 using Newtonsoft.Json;
 
-namespace WINTSI.WepSocket;
-
-public static class Server
+namespace WINTSI.WepSocket
 {
+    public static class Server
+    {
         const string USER_NAME = "ptadmin";
         const string USER_HASH = "ZrK0AOQz+L1wjr2jNXZwMcgosUOeicIifZ+8fOWDur2TkV7m";
         const string USERNAME_KEY = "username";
@@ -65,7 +65,8 @@ public static class Server
                 //TBD: Process payment here
                 Program.CreateRequest(paymentRequest.totalPrice);
                 //TBD: Build actual <see cref="PaymentResponse"/> data here:
-                var response = new PaymentResponse(PaymentResponse.PaymentStatus.SUCCESS, paymentRequest.totalPrice, "**** **** 4942", "SOME_REFEENCE");
+                var response = new PaymentResponse(PaymentResponse.PaymentStatus.SUCCESS, paymentRequest.totalPrice,
+                    "**** **** 4942", "SOME_REFEENCE");
                 var jsonResponse = JsonConvert.SerializeObject(response, Formatting.Indented);
                 Console.WriteLine("[201] Payment successful.");
                 session.Send(jsonResponse);
@@ -89,7 +90,9 @@ public static class Server
             //For use if needed.
         }
 
-        private static void WsServer_SessionClosed(WebSocketSession session, SuperSocket.SocketBase.CloseReason value) => Console.WriteLine("Client disconnected.");
+        private static void
+            WsServer_SessionClosed(WebSocketSession session, SuperSocket.SocketBase.CloseReason value) =>
+            Console.WriteLine("Client disconnected.");
 
         static bool ValidatePaymentRequest(PaymentRequest paymentRequest)
         {
@@ -98,6 +101,7 @@ public static class Server
                 if (DEBUG) Console.WriteLine("[409] Product count mismatch.");
                 return false;
             }
+
             var totalPrice = paymentRequest.products.Sum(product => product.GetTotalPrice());
             var validPrice = Math.Abs(paymentRequest.totalPrice - totalPrice) < TOLERANCE;
             if (DEBUG && !validPrice) Console.WriteLine("[409] Price mismatch.");
@@ -125,11 +129,22 @@ public static class Server
                 validUsername |= ProcessKeyValue(key, value) == ValidationResponse.ValidUsername;
                 validPassword |= ProcessKeyValue(key, value) == ValidationResponse.ValidPassword;
             }
+
             return validUsername && validPassword;
         }
 
-        static ValidationResponse ProcessKeyValue(string key, string value) => key.Equals(USERNAME_KEY, StringComparison.OrdinalIgnoreCase) ? ValidateUsername(value) : (key.Equals(PASSWORD_KEY, StringComparison.OrdinalIgnoreCase) ? ValidatePassword(value) : ValidationResponse.None);
-        static ValidationResponse ValidateUsername(string username) => username.Equals(USER_NAME, StringComparison.OrdinalIgnoreCase) ? ValidationResponse.ValidUsername : ValidationResponse.InvalidUsernameOrPassword;
+        static ValidationResponse ProcessKeyValue(string key, string value) =>
+            key.Equals(USERNAME_KEY, StringComparison.OrdinalIgnoreCase)
+                ? ValidateUsername(value)
+                : (key.Equals(PASSWORD_KEY, StringComparison.OrdinalIgnoreCase)
+                    ? ValidatePassword(value)
+                    : ValidationResponse.None);
+
+        static ValidationResponse ValidateUsername(string username) =>
+            username.Equals(USER_NAME, StringComparison.OrdinalIgnoreCase)
+                ? ValidationResponse.ValidUsername
+                : ValidationResponse.InvalidUsernameOrPassword;
+
         static ValidationResponse ValidatePassword(string password)
         {
             var hashBytes = Convert.FromBase64String(USER_HASH);
@@ -137,7 +152,10 @@ public static class Server
             Array.Copy(hashBytes, 0, salt, 0, 16);
             var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 100000);
             var hash = pbkdf2.GetBytes(20);
-            for (var i = 0; i < 20; i++) if (hashBytes[i + 16] != hash[i]) return ValidationResponse.InvalidUsernameOrPassword;
+            for (var i = 0; i < 20; i++)
+                if (hashBytes[i + 16] != hash[i])
+                    return ValidationResponse.InvalidUsernameOrPassword;
             return ValidationResponse.ValidPassword;
         }
+    }
 }

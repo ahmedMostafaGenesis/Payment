@@ -22,3 +22,39 @@ C:\Users\Ahmed\Documents\GitHub\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.csproj.Co
 C:\Users\Ahmed\Documents\GitHub\Payment\WINTSI\WINTSI\bin\Debug\SuperSocket.ClientEngine.dll
 C:\Users\Ahmed\Documents\GitHub\Payment\WINTSI\WINTSI\bin\Debug\SuperSocket.Facility.dll
 C:\Users\Ahmed\Documents\GitHub\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.exe.config
+E:\unity projects\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.csproj.AssemblyReference.cache
+E:\unity projects\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.exe.config
+E:\unity projects\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.Properties.Face.resources
+E:\unity projects\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.Properties.Resources.resources
+E:\unity projects\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.Properties.Settings.resources
+E:\unity projects\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.csproj.GenerateResource.cache
+E:\unity projects\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.csproj.CoreCompileInputs.cache
+E:\unity projects\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.exe
+E:\unity projects\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.pdb
+E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\WINTSI.exe.config
+E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\WINTSI.exe
+E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\WINTSI.pdb
+E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\log4net.dll
+E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\Newtonsoft.Json.dll
+E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\SuperSocket.ClientEngine.dll
+E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\SuperSocket.Common.dll
+E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\SuperSocket.Facility.dll
+E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\SuperSocket.SocketBase.dll
+E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\SuperSocket.SocketEngine.dll
+E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\SuperWebSocket.dll
+E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\System.Collections.Specialized.dll
+E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\System.IO.dll
+E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\System.Linq.dll
+E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\System.Net.NameResolution.dll
+E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\System.Net.Security.dll
+E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\System.Net.Sockets.dll
+E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\System.Runtime.dll
+E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\System.Runtime.Extensions.dll
+E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\System.Runtime.InteropServices.dll
+E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\System.Security.Cryptography.Algorithms.dll
+E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\System.Security.Cryptography.Encoding.dll
+E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\System.Security.Cryptography.Primitives.dll
+E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\System.Security.Cryptography.X509Certificates.dll
+E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\log4net.xml
+E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\Newtonsoft.Json.xml
+E:\unity projects\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.csproj.CopyComplete

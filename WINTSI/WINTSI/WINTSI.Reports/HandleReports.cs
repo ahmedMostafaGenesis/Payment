@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Ingenico.GUI;
@@ -83,6 +84,7 @@ internal class HandleReports
 	public void GenerateReport()
 	{
 		bool flag = true;
+
 		try
 		{
 			FormatReport formatReport = new FormatReport();

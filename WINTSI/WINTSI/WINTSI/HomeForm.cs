@@ -972,18 +972,15 @@ namespace Ingenico
 			{
 				request.tnxCode = tnxType.Text;
 				currentTrxType = dataElement.Get_TransTypeTag(tnxType.Text);
-				Console.WriteLine(request.tnxCode);
 			}
 			if (amount.Visible)
 			{
 				request.amount = GetAmountFormated(amount.Text);
-				Console.WriteLine(request.amount);
 
 			}
 			else if (searchAmount.Visible && searchAmount.Text != "$_.__")
 			{
 				request.amount = GetAmountFormated(searchAmount.Text);
-				Console.WriteLine(request.amount);
 
 			}
 			if (vasMode.Visible)
@@ -996,73 +993,61 @@ namespace Ingenico
 				{
 					request.vasMode = vasMode.SelectedIndex;
 				}
-				Console.WriteLine(request.vasMode);
 
 			}
 			else
 			{
 				request.vasMode = -1;
-				Console.WriteLine(request.vasMode);
 
 			}
 			if (tenderType.Visible)
 			{
 				request.tenderType = tenderType.Text;
-				Console.WriteLine(request.tranType);
 
 			}
 			if (clerkId.Visible)
 			{
 				request.clerkId = clerkId.Text;
-				Console.WriteLine(request.clerkId);
 
 			}
 			if (invoiceNum.Visible)
 			{
 				request.invoiceNumber = invoiceNum.Text;
-				Console.WriteLine(request.invoiceNumber);
 
 			}
 			if (authorization.Visible)
 			{
 				request.authorNumber = authorization.Text;
-				Console.WriteLine(request.authorNumber);
 
 			}
 			if (origSeqNum.Visible)
 			{
 				request.origSeqNumber = origSeqNum.Text;
-				Console.WriteLine(request.origSeqNumber);
 
 			}
 			if (origRefNum.Visible)
 			{
 				request.origRefNumber = origRefNum.Text;
-				Console.WriteLine(request.origRefNumber);
 
 			}
 			if (traceNumTBox.Visible)
 			{
 				request.traceNum = traceNumTBox.Text;
-				Console.WriteLine(request.traceNum);
 
 			}
 			if (closeBatch.Visible)
 			{
 				request.closeBatch = closeBatch.SelectedIndex + 1;
-				Console.WriteLine(request.closeBatch);
 
 			}
 			if (reprintTypeCBox.Visible)
 			{
 				request.reprintType = reprintTypeCBox.SelectedIndex.ToString();
-				Console.WriteLine(request.reprintType);
 
 			}
 			if (parameterType.Visible)
 			{
 				request.parameterType = parameterType.SelectedIndex + 1;
-				Console.WriteLine(request.parameterType);
 
 			}
 			if (forcedUp.Visible)
@@ -1185,19 +1170,15 @@ namespace Ingenico
 			{
 				request.tnxCode = "Sale";
 				currentTrxType = dataElement.Get_TransTypeTag("Sale");
-				Console.WriteLine(request.tnxCode);
 			}
 			if (this.amount.Visible || requestAmount > 0 )
 			{
 				request.amount = GetAmountFormated($"{requestAmount}");
-				Console.WriteLine(request.amount);
 
 			}
 			else if (searchAmount.Visible && searchAmount.Text != "$_.__")
 			{
 				request.amount = GetAmountFormated(searchAmount.Text);
-				Console.WriteLine(request.amount);
-
 			}
 			if (vasMode.Visible)
 			{
@@ -1209,73 +1190,61 @@ namespace Ingenico
 				{
 					request.vasMode = vasMode.SelectedIndex;
 				}
-				Console.WriteLine(request.vasMode);
 
 			}
 			else
 			{
 				request.vasMode = -1;
-				Console.WriteLine(request.vasMode);
 
 			}
 			if (tenderType.Visible)
 			{
 				request.tenderType = tenderType.Text;
-				Console.WriteLine(request.tranType);
 
 			}
 			if (requestClerkId > 0)
 			{
 				request.clerkId = $"{requestClerkId}";
-				Console.WriteLine(request.clerkId);
 
 			}
 			if (invoiceNum.Visible)
 			{
 				request.invoiceNumber = invoiceNum.Text;
-				Console.WriteLine(request.invoiceNumber);
 
 			}
 			if (authorization.Visible)
 			{
 				request.authorNumber = authorization.Text;
-				Console.WriteLine(request.authorNumber);
 
 			}
 			if (origSeqNum.Visible)
 			{
 				request.origSeqNumber = origSeqNum.Text;
-				Console.WriteLine(request.origSeqNumber);
 
 			}
 			if (origRefNum.Visible)
 			{
 				request.origRefNumber = origRefNum.Text;
-				Console.WriteLine(request.origRefNumber);
 
 			}
 			if (traceNumTBox.Visible)
 			{
 				request.traceNum = traceNumTBox.Text;
-				Console.WriteLine(request.traceNum);
 
 			}
 			if (closeBatch.Visible)
 			{
 				request.closeBatch = closeBatch.SelectedIndex + 1;
-				Console.WriteLine(request.closeBatch);
 
 			}
 			if (reprintTypeCBox.Visible)
 			{
 				request.reprintType = reprintTypeCBox.SelectedIndex.ToString();
-				Console.WriteLine(request.reprintType);
 
 			}
 			if (parameterType.Visible)
 			{
 				request.parameterType = parameterType.SelectedIndex + 1;
-				Console.WriteLine(request.parameterType);
 
 			}
 			if (forcedUp.Visible)
@@ -1785,6 +1754,7 @@ namespace Ingenico
 			var encodeType = Encoding.UTF7;
 			var stringBuilder = new StringBuilder();
 			var stringBuilder2 = new StringBuilder();
+			var stringBuilderForReport = new StringBuilder();
 			var style = Ticket.SelectionFont.Style;
 			var num2 = szListRespPrint.Sum(respPrint => respPrint.Length - 3);
 			var array = new byte[num2];
@@ -1827,9 +1797,12 @@ namespace Ingenico
 					{
 						stringBuilder2.Append(dictionary[Tags.TAG_CUST_FORMATTED_RECEIPT_BUFFER]);
 						DisplayFormattedDataInTrace(dictionary[Tags.TAG_CUST_FORMATTED_RECEIPT_BUFFER]);
+
 					}
 					else
 					{
+						stringBuilderForReport.Append($"{dictionary[key]} // ");
+						Console.WriteLine(dictionary[key]);
 						Ticket.AppendText(dictionary[key]);
 					}
 					Ticket.AppendText("\n");
@@ -1861,6 +1834,7 @@ namespace Ingenico
 			{
 				GetReceiptBuffer(stringBuilder2, ref custHtmlStringBuffer, ref custImgBytesBuffer);
 			}
+			Console.WriteLine(stringBuilderForReport.ToString());
 		}
 
 		private void DisplayCashDrawerRsp(IReadOnlyList<Dictionary<int, string>> listDico)

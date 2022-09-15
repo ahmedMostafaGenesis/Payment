@@ -3920,7 +3920,7 @@ namespace Ingenico
 			MaximizeBox = false;
 			Name = "HomeForm";
 			StartPosition = FormStartPosition.CenterScreen;
-			Text = "WINTSI";
+			Text = "Mr Payment";
 			FormClosing += new FormClosingEventHandler(HomeForm_FormClosing);
 			Load += new EventHandler(Home_Load);
 			transactionGroupBox.ResumeLayout(false);
@@ -3948,6 +3948,9 @@ namespace Ingenico
 			cdTabPage.ResumeLayout(false);
 			ResumeLayout(false);
 			PerformLayout();
+			Size = new Size(0, 0);
+			ControlBox = false;
+			ShowInTaskbar = false;
 		}
 	}
 }

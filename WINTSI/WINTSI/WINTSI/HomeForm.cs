@@ -18,6 +18,7 @@ using Ingenico.GUI;
 using Ingenico.Properties;
 using Ingenico.Reports;
 using Ingenico.Tools;
+using WINTSI.WepSocket;
 
 namespace Ingenico
 {
@@ -1801,8 +1802,8 @@ namespace Ingenico
 					}
 					else
 					{
-						stringBuilderForReport.Append($"{dictionary[key]} // ");
-						Console.WriteLine(dictionary[key]);
+						stringBuilderForReport.Append($"{dictionary[key]}/");
+						//Console.WriteLine(dictionary[key]);
 						Ticket.AppendText(dictionary[key]);
 					}
 					Ticket.AppendText("\n");
@@ -1835,6 +1836,7 @@ namespace Ingenico
 				GetReceiptBuffer(stringBuilder2, ref custHtmlStringBuffer, ref custImgBytesBuffer);
 			}
 			Console.WriteLine(stringBuilderForReport.ToString());
+			Server.SendResponse(stringBuilderForReport.ToString());
 		}
 
 		private void DisplayCashDrawerRsp(IReadOnlyList<Dictionary<int, string>> listDico)

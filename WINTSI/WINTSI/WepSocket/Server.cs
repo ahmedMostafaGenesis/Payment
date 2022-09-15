@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Ingenico;
 using SuperWebSocket;
 using Newtonsoft.Json;
@@ -19,6 +20,7 @@ namespace WINTSI.WepSocket
         const float TOLERANCE = 0.01f;
         const bool DEBUG = true;
         private static WebSocketServer wsServer;
+        private static WebSocketSession currentSession;
 
         private enum ValidationResponse
         {
@@ -54,6 +56,7 @@ namespace WINTSI.WepSocket
             try
             {
                 var paymentRequest = JsonConvert.DeserializeObject<PaymentRequest>(value);
+                currentSession = session;
                 Console.WriteLine("[202] Payment request received.");
                 if (!ValidatePaymentRequest(paymentRequest))
                 {
@@ -65,12 +68,8 @@ namespace WINTSI.WepSocket
                 //TBD: Process payment here
                 Program.CreateRequest(paymentRequest.totalPrice);
                 //TBD: Build actual <see cref="PaymentResponse"/> data here:
-                var response = new PaymentResponse(PaymentResponse.PaymentStatus.SUCCESS, paymentRequest.totalPrice,
-                    "**** **** 4942", "SOME_REFEENCE");
-                var jsonResponse = JsonConvert.SerializeObject(response, Formatting.Indented);
-                Console.WriteLine("[201] Payment successful.");
-                session.Send(jsonResponse);
-                session.Close();
+                // var response = new PaymentResponse(PaymentResponse.PaymentStatus.SUCCESS, paymentRequest.totalPrice,
+                //     "**** **** 4942", "SOME_REFEENCE");
             }
             catch (Exception ex)
             {
@@ -84,6 +83,15 @@ namespace WINTSI.WepSocket
             }
         }
 
+        public static void SendResponse(string result)
+        {
+            var response = new PaymentResponse(result);
+            var jsonResponse = JsonConvert.SerializeObject(response, Formatting.Indented);
+            //Console.WriteLine("[201] Payment successful.");
+            currentSession.Send(jsonResponse);
+            currentSession.Close();
+            currentSession = null;
+        }
         private static void WsServer_NewDataReceived(WebSocketSession session, byte[] value)
         {
             if (!ValidateSession(session)) return;

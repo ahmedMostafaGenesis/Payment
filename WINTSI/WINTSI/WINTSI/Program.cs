@@ -9,7 +9,7 @@ namespace Ingenico
 	internal static class Program
 	{
 		private static LogListener _myLogListener;
-		private static HomeForm _running;
+		public static HomeForm _running;
 		[STAThread]
 		private static void Main()
 		{
@@ -25,7 +25,7 @@ namespace Ingenico
 				Application.SetCompatibleTextRenderingDefault(defaultValue: false);
 				_running = new HomeForm();
 				StartServer();
-				//Application.Run(_running);
+				Application.Run(_running);
 
 			}
 			catch (Exception e)
@@ -41,7 +41,6 @@ namespace Ingenico
 		private static void StartServer()
 		{
 			Server.StartServer(_running.Com);
-			CreateRequest(1000);
 		}
 		public static void CreateRequest(int amount)
 		{

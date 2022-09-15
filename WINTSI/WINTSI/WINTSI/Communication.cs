@@ -53,7 +53,7 @@ public class Communication
 
 	public Communication()
 	{
-		if (File.Exists("WINTSI.exe.config"))
+		if (File.Exists("Mr Payment.exe.config"))
 		{
 			ReadConfigFile();
 			return;
@@ -65,10 +65,10 @@ public class Communication
 	private void ComDefaultSerialSetting()
 	{
 		LinkType = "Serial";
-		PortName = "COM1";
+		PortName = "COM3";
 		BaudRate = 19200;
 		IpAddress = "127.0.0.1";
-		IpPort = 9999;
+		IpPort = 8091;
 		
 	}
 

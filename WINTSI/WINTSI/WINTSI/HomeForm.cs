@@ -2269,11 +2269,9 @@ namespace Ingenico
 		private bool StartCommunicationProcess()
 		{
 			var num = applicationProtocol.StartConnection(Com);
-			if (!num)
-			{
-				MessageBox.Show("Connection failed: Terminal not found!", "WINTSI", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-			}
-			return num;
+			if (num) return true;
+			MessageBox.Show("Connection failed: Terminal not found!", "WINTSI", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+			return false;
 		}
 
 		private void saveTraceMenu_Click(object sender, EventArgs e)

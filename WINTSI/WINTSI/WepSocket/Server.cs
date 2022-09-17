@@ -83,9 +83,11 @@ namespace WINTSI.WepSocket
             }
         }
 
-        public static void SendResponse(string result)
+        public static void SendResponse(string result, PaymentStatus status = PaymentStatus.UNKNOWN)
         {
-            var response = new PaymentResponse(result);
+            var response = status == PaymentStatus.UNKNOWN
+                ? new PaymentResponse(result)
+                : new PaymentResponse(result, status);
             var jsonResponse = JsonConvert.SerializeObject(response, Formatting.Indented);
             //Console.WriteLine("[201] Payment successful.");
             currentSession.Send(jsonResponse);

@@ -8,6 +8,7 @@ using System.IO.Ports;
 using System.Linq;
 using System.Net.Sockets;
 using System.Threading;
+using WINTSI.WepSocket;
 
 namespace Ingenico
 {
@@ -305,6 +306,7 @@ public class Communication
 			}
 			catch
 			{
+				Server.SendResponse("Result:Technical Error/", PaymentStatus.FAIL);
 				Trace.WriteLine("Error opening serial port");
 			}
 			Thread.Sleep(100);

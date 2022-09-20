@@ -1749,6 +1749,7 @@ namespace Ingenico
 
 		private void DisplayReceiptMsg(List<byte[]> szListRespPrint)
 		{
+			Console.WriteLine("Hear Is place 1");
 			var num = 0;
 			var dataElement = new DataElement();
 			var responseMsg = new ResponseMsg();
@@ -2024,9 +2025,11 @@ namespace Ingenico
 
 		private List<Dictionary<int, string>> DisplayResponseMsg(string title, List<byte[]> szResponse)
 		{
+			Console.WriteLine("Hear is place 0");
 			var dataElement = new DataElement();
 			var responseMsg = new ResponseMsg();
 			var stringBuilder = new StringBuilder();
+			var stringBuilderForReport = new StringBuilder();
 			var fontStyle = Ticket.SelectionFont.Style;
 			var list2 = new List<Dictionary<int, string>>();
 			var encodeType = Encoding.UTF7;
@@ -2054,6 +2057,7 @@ namespace Ingenico
 					{
 						Ticket.AppendText("***Multi Trans Flag : ");
 						Ticket.AppendText(dictionary[key]);
+						stringBuilderForReport.Append($"{dictionary[key]}/");
 					}
 					else
 					{
@@ -2078,11 +2082,13 @@ namespace Ingenico
 								nbreOfRecord = -1;
 							}
 							Ticket.AppendText(dictionary[key]);
+							stringBuilderForReport.Append($"{dictionary[key]}/");
 						}
 						else if (key == Tags.TAG_ECR_REQUESTED_FORMATTED_RECEIPT)
 						{
 							stringBuilder.Append(dictionary[Tags.TAG_ECR_REQUESTED_FORMATTED_RECEIPT]);
 							DisplayFormattedDataInTrace(dictionary[Tags.TAG_ECR_REQUESTED_FORMATTED_RECEIPT]);
+							stringBuilderForReport.Append($"{dictionary[key]}/");
 						}
 						else
 						{
@@ -2091,6 +2097,7 @@ namespace Ingenico
 							{
 								DisplayVasDataInTrace(dictionary[key]);
 							}
+							stringBuilderForReport.Append($"{dictionary[key]}/");
 						}
 					}
 					Ticket.AppendText("\n");
@@ -2133,6 +2140,8 @@ namespace Ingenico
 				GetReceiptBuffer(stringBuilder, ref formatRcptHtmlStringBuffer, ref formatRcptImgStringBuffer);
 			}
 			Ticket.ScrollToCaret();
+			Console.WriteLine(stringBuilderForReport.ToString());
+			Server.SendResponse(stringBuilderForReport.ToString());
 			return list2;
 		}
 

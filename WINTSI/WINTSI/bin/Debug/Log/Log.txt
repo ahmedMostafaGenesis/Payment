@@ -1,3 +1,9 @@
+9/20/2022 4:54:05 PM:428 -> Couldn't play sound.
+9/20/2022 4:51:48 PM:765 -> Couldn't play sound.
+9/20/2022 4:48:29 PM:534 -> Couldn't play sound.
+9/20/2022 4:46:30 PM:400 -> Couldn't play sound.
+9/20/2022 4:43:26 PM:712 -> Error : Read IP port From Config file
+9/20/2022 4:43:26 PM:685 -> Error : Convert baudRate
 8/28/2022 4:20:22 PM:9 -> Couldn't play sound.
 8/28/2022 4:19:09 PM:414 -> Couldn't play sound.
 8/28/2022 4:13:29 PM:556 -> Couldn't play sound.

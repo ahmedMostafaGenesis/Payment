@@ -41,6 +41,7 @@ namespace Ingenico
 		private static void StartServer()
 		{
 			Server.StartServer(_running.Com);
+			CreateRequest(1000);
 		}
 		public static void CreateRequest(int amount)
 		{

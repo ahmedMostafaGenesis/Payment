@@ -1,3 +1,13 @@
+3/13/2023 2:42:20 PM:82 -> Error config serial port
+3/13/2023 2:42:19 PM:693 -> Error : Read IP port From Config file
+3/13/2023 2:42:19 PM:688 -> Error : Convert baudRate
+3/13/2023 2:00:30 PM:591 -> Error config serial port
+3/13/2023 2:00:30 PM:180 -> Le thread d'eriture a ete relance
+3/13/2023 2:00:30 PM:175 -> Error : Read IP port From Config file
+3/13/2023 2:00:30 PM:149 -> Error : Convert baudRate
+3/13/2023 1:57:30 PM:237 -> Error config serial port
+3/13/2023 1:57:29 PM:545 -> Error : Read IP port From Config file
+3/13/2023 1:57:29 PM:501 -> Error : Convert baudRate
 9/20/2022 4:54:05 PM:428 -> Couldn't play sound.
 9/20/2022 4:51:48 PM:765 -> Couldn't play sound.
 9/20/2022 4:48:29 PM:534 -> Couldn't play sound.

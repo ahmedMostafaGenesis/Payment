@@ -8,7 +8,7 @@ using System.IO.Ports;
 using System.Linq;
 using System.Net.Sockets;
 using System.Threading;
-using WINTSI.WepSocket;
+using WINTSI.WebSocket;
 
 namespace Ingenico
 {
@@ -306,7 +306,7 @@ public class Communication
 			}
 			catch
 			{
-				Server.SendResponse("Result:Technical Error/", PaymentStatus.FAIL);
+				Client.SendResponse("Result:Technical Error/", PaymentStatus.FAIL);
 				Trace.WriteLine("Error opening serial port");
 			}
 			Thread.Sleep(100);
@@ -390,8 +390,8 @@ public class Communication
 				_port.WriteTimeout = 100;
 				var text = "";
 				buffer.ToList().ForEach(c=> text+=c);
-				Console.WriteLine(count);
-				Console.WriteLine(text);
+				// Console.WriteLine(count);
+				// Console.WriteLine(text);
 				_port.Write(buffer, offset, count);
 				result = true;
 				return true;

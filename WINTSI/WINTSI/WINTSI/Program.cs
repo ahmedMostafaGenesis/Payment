@@ -1,7 +1,8 @@
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
-using WINTSI.WepSocket;
+using GenesisCreations.PharmaTech;
+using WINTSI.WebSocket;
 
 namespace Ingenico
 
@@ -13,7 +14,6 @@ namespace Ingenico
 		[STAThread]
 		private static void Main()
 		{
-			
 			try
 			{
 				_myLogListener = new LogListener("Log\\Log.txt");
@@ -34,17 +34,18 @@ namespace Ingenico
 			}
 
 			Console.ReadLine();
-
 		}
 
 
 		private static void StartServer()
 		{
-			Server.StartServer(_running.Com);
-			CreateRequest(1000);
+			Client.Initialize();
+			//var line = Console.ReadLine();
+			//CreateRequest(/*int.Parse(line)*/10000);
 		}
 		public static void CreateRequest(int amount)
 		{
+			Console.WriteLine(_running.Com?.LinkType);
 			_running.SendTheRequest(amount, 1);
 		}
 	}

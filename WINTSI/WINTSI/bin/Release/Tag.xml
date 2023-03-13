@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Config>
+  <DataElement Tag="001" Description="ECR Trans Amount" />
+  <DataElement Tag="002" Description="ECR Tender Type" />
+  <DataElement Tag="003" Description="ECR Clerk ID" />
+  <DataElement Tag="004" Description="ECR Invoice #" />
+  <DataElement Tag="005" Description="ECR Auth #" />
+  <DataElement Tag="010" Description="ECR Customer Ref #" />
+  <DataElement Tag="011" Description="ECR Ref #" />
+  <DataElement Tag="012" Description="ECR PAN Last 4" />
+  <DataElement Tag="013" Description="ECR Tran Type" />
+  <DataElement Tag="014" Description="ECR Acquirer Specific Data Indicator" />
+  <DataElement Tag="015" Description="ECR Formatted Rcpt" />
+  <DataElement Tag="016" Description="ECR Final Amount" />
+  <DataElement Tag="030" Description="ECR Vas merch URL" />
+  <DataElement Tag="031" Description="ECR Vas merch ID" /> 
+  <DataElement Tag="032" Description="ECR Vas Filter Categ" /> 
+  <DataElement Tag="033" Description="ECR Vas Encrypt Req" /> 
+  <DataElement Tag="034" Description="ECR Vas Mode" />
+  <DataElement Tag="035" Description="ECR Vas merch index" /> 
+  <DataElement Tag="036" Description="ECR Vas ECC Key" /> 
+  <DataElement Tag="050" Description="ECR Reprint Type" />
+  <DataElement Tag="051" Description="ECR Parameter Type" />
+  <DataElement Tag="052" Description="ECR Receipt Name" />
+  <DataElement Tag="100" Description="Trans Type" />
+  <DataElement Tag="101" Description="Trans Status" />
+  <DataElement Tag="102" Description="Trans Date" />
+  <DataElement Tag="103" Description="Trans Time" />
+  <DataElement Tag="104" Description="Trans Amount" />
+  <DataElement Tag="105" Description="Tip Amount" />
+  <DataElement Tag="106" Description="Cashback Amount" />
+  <DataElement Tag="107" Description="Surcharge Amount" />
+  <DataElement Tag="108" Description="Tax Amount" />
+  <DataElement Tag="109" Description="Total Amount" />
+  <DataElement Tag="110" Description="Invoice #" />
+  <DataElement Tag="111" Description="Purchase Order #" />
+  <DataElement Tag="112" Description="Reference #" />
+  <DataElement Tag="113" Description="Seq #" />
+  <DataElement Tag="114" Description="Table #" />
+  <DataElement Tag="115" Description="Ticket #" />
+  <DataElement Tag="116" Description="Voucher #" />
+  <DataElement Tag="117" Description="Ship to Postal" />
+  <DataElement Tag="118" Description="Clerk ID" />
+  <DataElement Tag="119" Description="Clerk Name" />
+  <DataElement Tag="120" Description="Number of Cards" />
+  <DataElement Tag="121" Description="DCC Opt-in Flag" />
+  <DataElement Tag="122" Description="DCC Conversion Rate" />
+  <DataElement Tag="123" Description="DCC Currency Code" />
+  <DataElement Tag="124" Description="DCC Amount" />
+  <DataElement Tag="125" Description="DCC Tip Amount" />
+  <DataElement Tag="126" Description="DCC Total Amount" />
+  <DataElement Tag="127" Description="Orig Tran Amount" />
+  <DataElement Tag="128" Description="Orig Tip Amount" />
+  <DataElement Tag="129" Description="Orig Cashback Amount" />
+  <DataElement Tag="130" Description="Orig Surcharge Amount" />
+  <DataElement Tag="131" Description="Orig Tax Amount" />
+  <DataElement Tag="132" Description="Orig Total Amount" />
+  <DataElement Tag="133" Description="Gift Card Reference #" />
+  <DataElement Tag="134" Description="Orig Trans Type" />
+  <DataElement Tag="135" Description="Number of Customers" />
+  <DataElement Tag="136" Description="Authorized User Type" />
+  <DataElement Tag="137" Description="Authorized User ID" />
+  <DataElement Tag="138" Description="DCC Approved Amount" />
+  <DataElement Tag="300" Description="Customer Card Type" />
+  <DataElement Tag="301" Description="Customer Card Desc" />
+  <DataElement Tag="302" Description="Customer Account #" />
+  <DataElement Tag="303" Description="Customer Language" />
+  <DataElement Tag="304" Description="Customer Name" />
+  <DataElement Tag="305" Description="Customer Account Type" />
+  <DataElement Tag="306" Description="Customer Card Entry Mode" />
+  <DataElement Tag="307" Description="Customer Number" />
+  <DataElement Tag="308" Description="EMV AID" />
+  <DataElement Tag="309" Description="EMV TVR" />
+  <DataElement Tag="310" Description="EMV TSI" />
+  <DataElement Tag="311" Description="EMV App Name" />
+  <DataElement Tag="312" Description="CVM result" />
+  <DataElement Tag="313" Description="Card Not Present" />
+  <DataElement Tag="314" Description="Amount Due Pay Type" />
+  <DataElement Tag="315" Description="Customer Ref #" />
+  <DataElement Tag="316" Description="EMV TC" />
+  <DataElement Tag="317" Description="EMV TCD" />
+  <DataElement Tag="318" Description="EMV TTQ" />
+  <DataElement Tag="319" Description="EMV AAC" />
+  <DataElement Tag="400" Description="Auth #" />
+  <DataElement Tag="401" Description="Host Response Code" />
+  <DataElement Tag="402" Description="Host Resp Text" />
+  <DataElement Tag="403" Description="Host Resp ISO code" />
+  <DataElement Tag="404" Description="Retrieval Reference #" />
+  <DataElement Tag="405" Description="Amount Due" />
+  <DataElement Tag="406" Description="Trace #" />
+  <DataElement Tag="407" Description="AVS Result" />
+  <DataElement Tag="408" Description="CVV Result" />
+  <DataElement Tag="409" Description="Card Balance" />
+  <DataElement Tag="410" Description="EBT Food Balance" />
+  <DataElement Tag="411" Description="Cash Out Amount" />
+  <DataElement Tag="412" Description="Transaction Reference Nbr" />
+  <DataElement Tag="413" Description="Acquirer Specific Data" />
+  <DataElement Tag="500" Description="Batch #" />
+  <DataElement Tag="501" Description="Batch Total Balance Flag" />
+  <DataElement Tag="502" Description="Batch Total Amount" />
+  <DataElement Tag="503" Description="Batch Total Count" />
+  <DataElement Tag="504" Description="Batch Sale Amount" />
+  <DataElement Tag="505" Description="Batch Sale Count" />
+  <DataElement Tag="506" Description="Batch Refund Amount" />
+  <DataElement Tag="507" Description="Batch Refund Count" />
+  <DataElement Tag="508" Description="Batch Void Amount" />
+  <DataElement Tag="509" Description="Batch Void  Count" />
+  <DataElement Tag="510" Description="Batch Tip Amount" />
+  <DataElement Tag="511" Description="Batch Void Tip Amount" />
+  <DataElement Tag="512" Description="Batch Cashback Amount" />
+  <DataElement Tag="513" Description="Batch Void Cashback Amount" />
+  <DataElement Tag="514" Description="Batch Surcharge Amount" />
+  <DataElement Tag="515" Description="Batch Void Surcharge Amount" />
+  <DataElement Tag="516" Description="Batch Tax Amount" />
+  <DataElement Tag="517" Description="Batch Void Tax Amount" />
+  <DataElement Tag="518" Description="Batch Gift Amount" />
+  <DataElement Tag="519" Description="Batch Gift Count" />
+  <DataElement Tag="520" Description="Batch Gift Activation Amount" />
+  <DataElement Tag="521" Description="Batch Gift Activation Count" />
+  <DataElement Tag="522" Description="Batch Gift Redemption Amount" />
+  <DataElement Tag="523" Description="Batch Gift Redemption Count" />
+  <DataElement Tag="524" Description="Batch Gift Refund Amount" />
+  <DataElement Tag="525" Description="Batch Gift Refund Count" />
+  <DataElement Tag="526" Description="Batch Gift Reload Amount" />
+  <DataElement Tag="527" Description="Batch Gift Reload Count" />
+  <DataElement Tag="528" Description="Batch Gift Zero Card Amount" />
+  <DataElement Tag="529" Description="Batch Gift Zero Card Count" />
+  <DataElement Tag="534" Description="Gift Deactivation Amount" />
+  <DataElement Tag="535" Description="Gift Deactivation Count" />
+  <DataElement Tag="536" Description="Gift Reactivation Amount" />
+  <DataElement Tag="537" Description="Gift Reactivation Count" />
+  <DataElement Tag="540" Description="Batch Return Tip Amount" />
+  <DataElement Tag="550" Description="Host Name" />
+  <DataElement Tag="600" Description="Demo indicator" />
+  <DataElement Tag="601" Description="TID" />
+  <DataElement Tag="602" Description="MID" />
+  <DataElement Tag="603" Description="Merch Currency Code" />
+  <DataElement Tag="700" Description="Header1" />
+  <DataElement Tag="701" Description="Header2" />
+  <DataElement Tag="702" Description="Header3" />
+  <DataElement Tag="703" Description="Header4" />
+  <DataElement Tag="704" Description="Header5" />
+  <DataElement Tag="705" Description="Header6" />
+  <DataElement Tag="706" Description="Header7" />
+  <DataElement Tag="707" Description="Footer1" />
+  <DataElement Tag="708" Description="Footer2" />
+  <DataElement Tag="709" Description="Footer3" />
+  <DataElement Tag="710" Description="Footer4" />
+  <DataElement Tag="711" Description="Footer5" />
+  <DataElement Tag="712" Description="Footer6" />
+  <DataElement Tag="713" Description="Footer7" />
+  <DataElement Tag="714" Description="Endor1" />
+  <DataElement Tag="715" Description="Endor2" />
+  <DataElement Tag="716" Description="Endor3" />
+  <DataElement Tag="717" Description="Endor4" />
+  <DataElement Tag="718" Description="Endor5" />
+  <DataElement Tag="719" Description="Endor6" />
+  <DataElement Tag="720" Description="Cust Endor1" />
+  <DataElement Tag="721" Description="Cust Endor2" />
+  <DataElement Tag="722" Description="Cust Endor3" />
+  <DataElement Tag="723" Description="Cust Endor4" />
+  <DataElement Tag="724" Description="Cust Endor5" />
+  <DataElement Tag="725" Description="Cust Endor6" />
+  <DataElement Tag="726" Description="Blank Tip Line Indicator" />
+  <DataElement Tag="727" Description="Tip Assist Line" />
+  <DataElement Tag="728" Description="Tax Registration #" />
+  <DataElement Tag="729" Description="Tax Label" />
+  <DataElement Tag="730" Description="EMV Resp Code" />
+  <DataElement Tag="731" Description="Auth Codes History" />
+  <DataElement Tag="732" Description="IIN" />
+  <DataElement Tag="733" Description="RCPT Transaction Status" />
+  <DataElement Tag="734" Description="E2EE Text" />
+  <DataElement Tag="800" Description="TERM CAPAB" />
+  <DataElement Tag="801" Description="ADD CAPAB" />
+  <DataElement Tag="802" Description="COUNTRY CODE" />
+  <DataElement Tag="803" Description="TERMINAL TYPE" />
+  <DataElement Tag="804" Description="TRANS CURR CODE" />
+  <DataElement Tag="805" Description="TRANS CURR EXP" />
+  <DataElement Tag="806" Description="ACQUIRER ID" />
+  <DataElement Tag="807" Description="MERCH CAT CODE" />
+  <DataElement Tag="808" Description="MERCH ID" />
+  <DataElement Tag="809" Description="TRANS REF CURR CODE" />
+  <DataElement Tag="810" Description="TRANS REF CURR EXP" />
+  <DataElement Tag="811" Description="REF CURR CONV" />
+  <DataElement Tag="812" Description="Scheme" />
+  <DataElement Tag="813" Description="AID" />
+  <DataElement Tag="814" Description="AppName" />
+  <DataElement Tag="815" Description="AppVersion/EMVAVNSingle" />
+  <DataElement Tag="816" Description="PARTIAL NAME SEL" />
+  <DataElement Tag="817" Description="ENABLE AUTO SELECT" />
+  <DataElement Tag="818" Description="FALLBACK INDICATOR" />
+  <DataElement Tag="819" Description="FLOOR LIMIT" />
+  <DataElement Tag="820" Description="THRESHOLD VAL RDM SELECT" />
+  <DataElement Tag="821" Description="TAC DEFAULT" />
+  <DataElement Tag="822" Description="TAC DENIAL" />
+  <DataElement Tag="823" Description="TAC ONLINE" />
+  <DataElement Tag="824" Description="MAX TARGET PERCENT" />
+  <DataElement Tag="825" Description="TARGET PERCENT" />
+  <DataElement Tag="826" Description="DDOL" />
+  <DataElement Tag="827" Description="TDOL" />
+  <DataElement Tag="828" Description="EVTRNCAT" />
+  <DataElement Tag="829" Description="Option" />
+  <DataElement Tag="830" Description="TrnLmt" />
+  <DataElement Tag="831" Description="CvmLmt" />
+  <DataElement Tag="832" Description="TTQ" />
+  <DataElement Tag="833" Description="MAGAVN" />
+  <DataElement Tag="834" Description="EMVAVN" />
+  <DataElement Tag="835" Description="TCPCVM" />
+  <DataElement Tag="836" Description="TCPNoCVM" />
+  <DataElement Tag="837" Description="MTI" />
+  <DataElement Tag="838" Description="UDOL" />
+  <DataElement Tag="839" Description="MStripe" />
+  <DataElement Tag="840" Description="EMVAVN" />
+  <DataElement Tag="841" Description="TTI" />
+  <DataElement Tag="842" Description="TOS" />
+  <DataElement Tag="843" Description="RRL" />
+  <DataElement Tag="844" Description="RID" />
+  <DataElement Tag="845" Description="KEY INDEX" />
+  <DataElement Tag="846" Description="KEY MODULUS" />
+  <DataElement Tag="847" Description="KEY EXPONENT" />
+  <DataElement Tag="848" Description="EMV Key Date" />  
+  <DataElement Tag="849" Description="InputCap" />
+  <DataElement Tag="850" Description="SecureCap" />
+  <DataElement Tag="851" Description="CVMCapEMVCVM" />
+  <DataElement Tag="852" Description="CVMCapEMVNoCVM" />
+  <DataElement Tag="853" Description="CVMCapMAGCVM" />
+  <DataElement Tag="854" Description="CVMCapMAGNoCVM" />
+  <DataElement Tag="855" Description="TrnLmtCard" />
+  <DataElement Tag="856" Description="TrnLmtMobile" />
+  <DataElement Tag="857" Description="KernelConfig" />
+  <DataElement Tag="858" Description="MAGAVNSingle/AmexTCP" />
+  <DataElement Tag="859" Description="TornTnxLife" />
+  <DataElement Tag="860" Description="TornTnxMax" />  
+  <DataElement Tag="861" Description="EMVAVN" />
+  <DataElement Tag="862" Description="UnpredictNR" />
+  <DataElement Tag="863" Description="TnxCap" />
+  <DataElement Tag="864" Description="TermRiskMngmt" />
+  <DataElement Tag="865" Description="RetryLmt" />
+  <DataElement Tag="866" Description="TrnType" />
+  <DataElement Tag="867" Description="TIProfile" />
+  <DataElement Tag="868" Description="MAX%" />
+  <DataElement Tag="869" Description="TARGT%" />
+  <DataElement Tag="870" Description="RRPAccThresh" />
+  <DataElement Tag="880" Description="TSI Version" />
+  <DataElement Tag="881" Description="Core App Version" />
+  <DataElement Tag="882" Description="Custom Name" />
+  <DataElement Tag="890" Description="Merchant Preformatted Rcpt" />
+  <DataElement Tag="891" Description="Customer Preformatted Rcpt" />
+  <DataElement Tag="892" Description="Merchant Rcpt File Name" />
+  <DataElement Tag="893" Description="Customer Rcpt File Name" />
+  <DataElement Tag="894" Description="Preformatted Rcpt data" />
+  <DataElement Tag="900" Description="Trans Record" />
+  <DataElement Tag="920" Description="Raw PrintSize" />
+  <DataElement Tag="921" Description="Raw PrintText" />
+  <DataElement Tag="930" Description="EMV data tag" />
+  <DataElement Tag="931" Description="EMV data value" />
+  <DataElement Tag="932" Description="Report Tag Label" />
+  <DataElement Tag="933" Description="Report Tag Value" />
+  <DataElement Tag="934" Description="Error Result Code" />
+  <DataElement Tag="935" Description="Error Message" />
+  <DataElement Tag="936" Description="Activity Event" />
+  <DataElement Tag="937" Description="Activity Data Affected" />
+  <DataElement Tag="938" Description="Total Number Records" />
+  <DataElement Tag="970" Description="VAS Response Code" />
+  <DataElement Tag="971" Description="VAS Merchant Number" />
+  <DataElement Tag="972" Description="VAS Merchant ID" />
+  <DataElement Tag="973" Description="VAS Mobile Token" />
+  <DataElement Tag="974" Description="VAS Data" />
+  <DataElement Tag="975" Description="VAS Version" />
+  <DataElement Tag="976" Description="VAS Data Status" />
+</Config>

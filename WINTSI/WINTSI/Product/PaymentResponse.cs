@@ -1,7 +1,6 @@
-﻿internal class PaymentResponse
+﻿public class PaymentResponse
 {
     const string CARD_METHOD = "CARD";
-
 
     public PaymentResponse(string report)
     {

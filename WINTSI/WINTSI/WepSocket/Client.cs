@@ -4,23 +4,30 @@ using System.Web;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using GenesisCreations.PharmaTech;
 using Ingenico;
 using SuperWebSocket;
 using Newtonsoft.Json;
+using SuperSocket.ClientEngine;
+using WebSocket4Net;
+using ClientWebSocket = WebSocket4Net.WebSocket;
 
-namespace WINTSI.WepSocket
+namespace WINTSI.WebSocket
 {
-    public static class Server
+    public static class Client
     {
         const string USER_NAME = "ptadmin";
         const string USER_HASH = "ZrK0AOQz+L1wjr2jNXZwMcgosUOeicIifZ+8fOWDur2TkV7m";
         const string USERNAME_KEY = "username";
         const string PASSWORD_KEY = "password";
-        private static int _port = 8088;
         const float TOLERANCE = 0.01f;
         const bool DEBUG = true;
-        private static WebSocketServer wsServer;
-        private static WebSocketSession currentSession;
+        public static ClientWebSocket SocketClient;
+
+        private static bool IsProduction = false;
+        private const string DevelopmentUri = "ws://127.0.0.1:9080";
+        private const string ProductionUri = "ws://192.168.30.100:9080";
+        static string Uri => IsProduction ? ProductionUri : DevelopmentUri;
 
         private enum ValidationResponse
         {
@@ -29,39 +36,38 @@ namespace WINTSI.WepSocket
             ValidUsername = 2,
             ValidPassword = 3
         }
-
-        public static void StartServer(Communication communication)
+        
+        public static void Initialize()
         {
-            _port = communication.IpPort;
-            wsServer = new WebSocketServer();
-            wsServer.Setup(_port);
-            wsServer.NewSessionConnected += WsServer_NewSessionConnected;
-            wsServer.NewMessageReceived += WsServer_NewMessageReceived;
-            wsServer.NewDataReceived += WsServer_NewDataReceived;
-            wsServer.SessionClosed += WsServer_SessionClosed;
-            wsServer.Start();
-            Console.WriteLine($"Server is running on port {_port}.");
-        }
-
-        private static void WsServer_NewSessionConnected(WebSocketSession session)
-        {
-            if (!ValidateSession(session)) return;
-            Console.WriteLine("[200] Client connected successfully.");
-
-        }
-
-        private static void WsServer_NewMessageReceived(WebSocketSession session, string value)
-        {
-            if (!ValidateSession(session)) return;
             try
             {
-                var paymentRequest = JsonConvert.DeserializeObject<PaymentRequest>(value);
-                currentSession = session;
+                SocketClient = new ClientWebSocket(Uri);
+                
+                SocketClient.Opened += OnSocketOpened;
+                SocketClient.Closed += OnSocketClosed;
+                SocketClient.Error += OnSocketError;
+                SocketClient.MessageReceived += OnSocketMessageReceived;
+
+                SocketClient.Open();
+            }catch (Exception ex)
+            {
+                Console.WriteLine($"An error occured while attempting to connect to server on {Uri}.");
+                if (DEBUG) Console.WriteLine(ex.Message);
+            }
+        }
+        
+        private static void OnSocketMessageReceived(object sender, MessageReceivedEventArgs e)
+        {
+            Console.WriteLine(e.Message);
+            try
+            {
+                var paymentRequest = JsonConvert.DeserializeObject<PaymentRequest>(e.Message);
+                //currentSession = session;
                 Console.WriteLine("[202] Payment request received.");
                 if (!ValidatePaymentRequest(paymentRequest))
                 {
                     Console.WriteLine("[400] Bad payment request.");
-                    session.Send("Bad payment request.");
+                    SocketClient.Send("Bad payment request.");
                     return;
                 }
 
@@ -69,41 +75,41 @@ namespace WINTSI.WepSocket
                 Program.CreateRequest(paymentRequest.totalPrice);
                 //TBD: Build actual <see cref="PaymentResponse"/> data here:
                 // var response = new PaymentResponse(PaymentResponse.PaymentStatus.SUCCESS, paymentRequest.totalPrice,
-                //     "**** **** 4942", "SOME_REFEENCE");
+                //     "**** **** 4942", "SOME_REFERENCE");
             }
             catch (Exception ex)
             {
                 Console.WriteLine("[500] Internal server error.");
-                session.Send("Internal server error.");
+                SocketClient.Send("Internal server error.");
                 if (DEBUG)
                 {
                     Console.WriteLine(ex.Message);
-                    session.Send(ex.Message);
+                    SocketClient.Send(ex.Message);
                 }
             }
         }
 
+        private static void OnSocketError(object sender, ErrorEventArgs e)
+        {
+            Console.WriteLine($"An error occured while communicating with server on {Uri}.");
+            if (DEBUG) Console.WriteLine(e.Exception.Message);
+        }
+        private static void OnSocketClosed(object sender, EventArgs e) => Console.WriteLine($"Connection with server on {Uri} was shutdown.");
+        private static void OnSocketOpened(object sender, EventArgs e) => Console.WriteLine($"Connection with server on {Uri} was opened successfully."); // TODO: Validate session here.
         public static void SendResponse(string result, PaymentStatus status = PaymentStatus.UNKNOWN)
         {
+            Console.WriteLine(status);
             var response = status == PaymentStatus.UNKNOWN
                 ? new PaymentResponse(result)
                 : new PaymentResponse(result, status);
             var jsonResponse = JsonConvert.SerializeObject(response, Formatting.Indented);
+            PrintingManager.PrintReceiptForTransaction(response);
             //Console.WriteLine("[201] Payment successful.");
-            currentSession.Send(jsonResponse);
-            currentSession.Close();
-            currentSession = null;
+            SocketClient.Send(jsonResponse);
+            /*currentSession.Close();
+            currentSession = null;*/
         }
-        private static void WsServer_NewDataReceived(WebSocketSession session, byte[] value)
-        {
-            if (!ValidateSession(session)) return;
-            //For use if needed.
-        }
-
-        private static void
-            WsServer_SessionClosed(WebSocketSession session, SuperSocket.SocketBase.CloseReason value) =>
-            Console.WriteLine("Client disconnected.");
-
+        
         static bool ValidatePaymentRequest(PaymentRequest paymentRequest)
         {
             if (paymentRequest.products.Length != paymentRequest.productCount)

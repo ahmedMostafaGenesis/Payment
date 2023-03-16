@@ -58,3 +58,27 @@ E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\System.Security.Cryptography.X
 E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\log4net.xml
 E:\unity projects\Payment\WINTSI\WINTSI\bin\Debug\Newtonsoft.Json.xml
 E:\unity projects\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.csproj.CopyComplete
+D:\Projects\Payment\WINTSI\WINTSI\bin\Debug\WINTSI.exe.config
+D:\Projects\Payment\WINTSI\WINTSI\bin\Debug\WINTSI.exe
+D:\Projects\Payment\WINTSI\WINTSI\bin\Debug\WINTSI.pdb
+D:\Projects\Payment\WINTSI\WINTSI\bin\Debug\log4net.dll
+D:\Projects\Payment\WINTSI\WINTSI\bin\Debug\Newtonsoft.Json.dll
+D:\Projects\Payment\WINTSI\WINTSI\bin\Debug\SuperSocket.ClientEngine.dll
+D:\Projects\Payment\WINTSI\WINTSI\bin\Debug\SuperSocket.Common.dll
+D:\Projects\Payment\WINTSI\WINTSI\bin\Debug\SuperSocket.Facility.dll
+D:\Projects\Payment\WINTSI\WINTSI\bin\Debug\SuperSocket.SocketBase.dll
+D:\Projects\Payment\WINTSI\WINTSI\bin\Debug\SuperSocket.SocketEngine.dll
+D:\Projects\Payment\WINTSI\WINTSI\bin\Debug\SuperWebSocket.dll
+D:\Projects\Payment\WINTSI\WINTSI\bin\Debug\log4net.xml
+D:\Projects\Payment\WINTSI\WINTSI\bin\Debug\Newtonsoft.Json.xml
+D:\Projects\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.csproj.AssemblyReference.cache
+D:\Projects\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.csproj.SuggestedBindingRedirects.cache
+D:\Projects\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.exe.config
+D:\Projects\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.Properties.Face.resources
+D:\Projects\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.Properties.Resources.resources
+D:\Projects\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.Properties.Settings.resources
+D:\Projects\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.csproj.GenerateResource.cache
+D:\Projects\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.csproj.CoreCompileInputs.cache
+D:\Projects\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.csproj.CopyComplete
+D:\Projects\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.exe
+D:\Projects\Payment\WINTSI\WINTSI\obj\Debug\WINTSI.pdb

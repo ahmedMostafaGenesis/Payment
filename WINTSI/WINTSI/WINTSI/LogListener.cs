@@ -230,13 +230,13 @@ public class LogListener : TraceListener
 	public override void WriteLine(string message, string cate)
 	{
 		WriteInFic(message + "\r\n");
-		Console.WriteLine(message + "\r\n");
+		// Console.WriteLine(message + "\r\n");
 	}
 
 	public override void WriteLine(string message)
 	{
 		Write(message + "\r\n");
-		Console.WriteLine(message + "\r\n");
+		// Console.WriteLine(message + "\r\n");
 	}
 
 	public override void Write(string message)
@@ -246,7 +246,7 @@ public class LogListener : TraceListener
 			message = DateTime.Now.ToString() + ":" + DateTime.Now.Millisecond + " -> " + message;
 		}
 		WriteInFic(message);
-		Console.WriteLine(message + "\r\n");
+		// Console.WriteLine(message + "\r\n");
 	}
 
 	public override void WriteLine(object o)

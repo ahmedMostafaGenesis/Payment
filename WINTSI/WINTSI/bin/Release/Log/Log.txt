@@ -1,0 +1,126 @@
+3/13/2023 6:15:41 PM:866 -> Error config serial port
+3/13/2023 6:15:41 PM:703 -> Error config serial port
+3/13/2023 6:15:41 PM:334 -> Error : Read IP port From Config file
+3/13/2023 6:15:41 PM:310 -> Error : Convert baudRate
+3/13/2023 6:14:58 PM:508 -> Error config serial port
+3/13/2023 6:14:58 PM:398 -> Error config serial port
+3/13/2023 6:14:58 PM:90 -> Error : Read IP port From Config file
+3/13/2023 6:14:58 PM:90 -> Error : Convert baudRate
+3/13/2023 6:13:30 PM:430 -> Error config serial port
+3/13/2023 6:13:30 PM:319 -> Error config serial port
+3/13/2023 6:13:30 PM:2 -> Error : Read IP port From Config file
+3/13/2023 6:13:30 PM:2 -> Error : Convert baudRate
+3/13/2023 6:13:23 PM:412 -> Error config serial port
+3/13/2023 6:13:23 PM:392 -> Error config serial port
+3/13/2023 6:13:23 PM:298 -> Error config serial port
+3/13/2023 6:13:23 PM:281 -> Error config serial port
+3/13/2023 6:13:22 PM:973 -> Error : Read IP port From Config file
+3/13/2023 6:13:22 PM:972 -> Error : Convert baudRate
+3/13/2023 6:13:22 PM:962 -> Error : Read IP port From Config file
+3/13/2023 6:13:22 PM:961 -> Error : Convert baudRate
+3/13/2023 6:12:27 PM:971 -> Error config serial port
+3/13/2023 6:12:27 PM:859 -> Error config serial port
+3/13/2023 6:12:27 PM:551 -> Error : Read IP port From Config file
+3/13/2023 6:12:27 PM:550 -> Error : Convert baudRate
+3/13/2023 6:09:30 PM:78 -> Error config serial port
+3/13/2023 6:09:29 PM:771 -> Error : Read IP port From Config file
+3/13/2023 6:09:29 PM:771 -> Error : Convert baudRate
+3/13/2023 6:08:31 PM:699 -> Error config serial port
+3/13/2023 6:08:31 PM:586 -> Error config serial port
+3/13/2023 6:08:31 PM:278 -> Error : Read IP port From Config file
+3/13/2023 6:08:31 PM:277 -> Error : Convert baudRate
+3/13/2023 6:06:52 PM:932 -> Error config serial port
+3/13/2023 6:06:52 PM:822 -> Error config serial port
+3/13/2023 6:06:52 PM:504 -> Error : Read IP port From Config file
+3/13/2023 6:06:52 PM:503 -> Error : Convert baudRate
+3/13/2023 6:05:06 PM:842 -> Error config serial port
+3/13/2023 6:05:06 PM:732 -> Error config serial port
+3/13/2023 6:05:06 PM:413 -> Error : Read IP port From Config file
+3/13/2023 6:05:06 PM:413 -> Error : Convert baudRate
+3/13/2023 6:04:19 PM:969 -> Error config serial port
+3/13/2023 6:04:19 PM:858 -> Error config serial port
+3/13/2023 6:04:19 PM:541 -> Error : Read IP port From Config file
+3/13/2023 6:04:19 PM:541 -> Error : Convert baudRate
+3/13/2023 6:04:10 PM:521 -> Error config serial port
+3/13/2023 6:04:10 PM:409 -> Error config serial port
+3/13/2023 6:04:10 PM:96 -> Error : Read IP port From Config file
+3/13/2023 6:04:10 PM:95 -> Error : Convert baudRate
+3/13/2023 6:03:35 PM:830 -> Error config serial port
+3/13/2023 6:03:35 PM:718 -> Error config serial port
+3/13/2023 6:03:35 PM:412 -> Error : Read IP port From Config file
+3/13/2023 6:03:35 PM:412 -> Error : Convert baudRate
+3/13/2023 6:03:30 PM:106 -> Error config serial port
+3/13/2023 6:03:29 PM:990 -> Error config serial port
+3/13/2023 6:03:29 PM:681 -> Error : Read IP port From Config file
+3/13/2023 6:03:29 PM:680 -> Error : Convert baudRate
+3/13/2023 6:02:45 PM:665 -> Error config serial port
+3/13/2023 6:02:45 PM:240 -> Error : Read IP port From Config file
+3/13/2023 6:02:45 PM:240 -> Error : Convert baudRate
+3/13/2023 6:02:01 PM:366 -> Error : Read IP port From Config file
+3/13/2023 6:02:01 PM:366 -> Error : Convert baudRate
+3/13/2023 6:01:28 PM:835 -> Error : Read IP port From Config file
+3/13/2023 6:01:28 PM:834 -> Error : Convert baudRate
+3/13/2023 6:00:45 PM:6 -> Error : Read IP port From Config file
+3/13/2023 6:00:45 PM:6 -> Error : Convert baudRate
+3/13/2023 5:56:18 PM:553 -> Error : Read IP port From Config file
+3/13/2023 5:56:18 PM:552 -> Error : Convert baudRate
+3/13/2023 5:55:50 PM:800 -> Error config serial port
+3/13/2023 5:55:49 PM:12 -> Error : Read IP port From Config file
+3/13/2023 5:55:49 PM:11 -> Error : Convert baudRate
+3/13/2023 5:54:57 PM:399 -> Error config serial port
+3/13/2023 5:54:55 PM:800 -> Error : Read IP port From Config file
+3/13/2023 5:54:55 PM:800 -> Error : Convert baudRate
+3/13/2023 5:54:38 PM:427 -> Error : Read IP port From Config file
+3/13/2023 5:54:38 PM:427 -> Error : Convert baudRate
+3/13/2023 5:52:29 PM:164 -> Error : Read IP port From Config file
+3/13/2023 5:52:29 PM:164 -> Error : Convert baudRate
+3/13/2023 5:50:45 PM:368 -> Error : Read IP port From Config file
+3/13/2023 5:50:45 PM:367 -> Error : Convert baudRate
+3/13/2023 5:49:06 PM:144 -> Error : Read IP port From Config file
+3/13/2023 5:49:06 PM:143 -> Error : Convert baudRate
+3/13/2023 4:03:54 PM:22 -> Couldn't play sound.
+3/13/2023 4:02:58 PM:612 -> Error config serial port
+3/13/2023 4:02:58 PM:302 -> Error : Read IP port From Config file
+3/13/2023 4:02:58 PM:302 -> Error : Convert baudRate
+3/13/2023 4:01:37 PM:180 -> Couldn't play sound.
+3/13/2023 4:01:02 PM:854 -> Couldn't play sound.
+3/13/2023 4:00:46 PM:201 -> Couldn't play sound.
+3/13/2023 4:00:10 PM:579 -> Couldn't play sound.
+3/13/2023 4:00:10 PM:25 -> Error config serial port
+3/13/2023 4:00:09 PM:704 -> Error : Read IP port From Config file
+3/13/2023 4:00:09 PM:700 -> Error : Convert baudRate
+3/13/2023 3:59:11 PM:329 -> Couldn't play sound.
+3/13/2023 3:50:42 PM:22 -> Error config serial port
+3/13/2023 3:50:41 PM:574 -> Error : Read IP port From Config file
+3/13/2023 3:50:41 PM:570 -> Error : Convert baudRate
+3/13/2023 2:39:13 PM:155 -> Error config serial port
+3/13/2023 2:39:12 PM:751 -> Error : Read IP port From Config file
+3/13/2023 2:39:12 PM:746 -> Error : Convert baudRate
+3/13/2023 2:30:44 PM:69 -> Error config serial port
+3/13/2023 2:30:43 PM:692 -> Error : Read IP port From Config file
+3/13/2023 2:30:43 PM:690 -> Error : Convert baudRate
+3/13/2023 2:29:32 PM:80 -> Error config serial port
+3/13/2023 2:29:32 PM:78 -> Problem updateCfgXmlListType
+3/13/2023 2:29:32 PM:77 -> Problem updateTagXmlListType
+3/13/2023 2:29:32 PM:11 -> Le thread d'eriture a ete relance
+3/13/2023 2:29:32 PM:10 -> Problem updateListTransactionType
+3/13/2023 2:29:32 PM:8 -> Problem updateListTenderType
+3/13/2023 2:29:31 PM:723 -> Error : Read IP port From Config file
+3/13/2023 2:29:31 PM:722 -> Error : Convert baudRate
+3/13/2023 2:28:48 PM:411 -> Error config serial port
+3/13/2023 2:28:48 PM:409 -> Le thread d'eriture a ete relance
+3/13/2023 2:28:48 PM:408 -> Problem updateCfgXmlListType
+3/13/2023 2:28:48 PM:407 -> Problem updateTagXmlListType
+3/13/2023 2:28:48 PM:341 -> Le thread d'eriture a ete relance
+3/13/2023 2:28:48 PM:340 -> Problem updateListTransactionType
+3/13/2023 2:28:48 PM:337 -> Problem updateListTenderType
+3/13/2023 2:28:48 PM:50 -> Error : Read IP port From Config file
+3/13/2023 2:28:48 PM:49 -> Error : Convert baudRate
+3/13/2023 2:28:36 PM:321 -> Error config serial port
+3/13/2023 2:28:36 PM:318 -> Problem updateCfgXmlListType
+3/13/2023 2:28:36 PM:317 -> Problem updateTagXmlListType
+3/13/2023 2:28:36 PM:194 -> Le thread d'eriture a ete relance
+3/13/2023 2:28:36 PM:192 -> Problem updateListTransactionType
+3/13/2023 2:28:36 PM:190 -> Problem updateListTenderType
+3/13/2023 2:28:35 PM:897 -> Error : Read IP port From Config file
+3/13/2023 2:28:35 PM:896 -> Error : Convert baudRate

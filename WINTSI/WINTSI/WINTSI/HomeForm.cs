@@ -18,7 +18,7 @@ using Ingenico.GUI;
 using Ingenico.Properties;
 using Ingenico.Reports;
 using Ingenico.Tools;
-using WINTSI.WepSocket;
+using WINTSI.WebSocket;
 
 namespace Ingenico
 {
@@ -1125,6 +1125,7 @@ namespace Ingenico
 				applicationProtocol.Request = request;
 				if (applicationProtocol.RequestApplyTransaction())
 				{
+					Console.WriteLine("Starting timer.");
 					timer1.Start();
 					Thread.Sleep(1);
 					sendRequest.Enabled = false;
@@ -1175,7 +1176,6 @@ namespace Ingenico
 			if (this.amount.Visible || requestAmount > 0 )
 			{
 				request.amount = GetAmountFormated($"{requestAmount}");
-
 			}
 			else if (searchAmount.Visible && searchAmount.Text != "$_.__")
 			{
@@ -1322,6 +1322,7 @@ namespace Ingenico
 				applicationProtocol.Request = request;
 				if (applicationProtocol.RequestApplyTransaction())
 				{
+					Console.WriteLine("Timer starting 3.");
 					timer1.Start();
 					Thread.Sleep(1);
 					sendRequest.Enabled = false;
@@ -1497,6 +1498,7 @@ namespace Ingenico
 				applicationProtocol.Request = request;
 				if (applicationProtocol.RequestApplyTransaction())
 				{
+					Console.WriteLine("Starting timer 2.");
 					timer1.Start();
 					Thread.Sleep(1);
 					startButton.Enabled = false;
@@ -1524,6 +1526,7 @@ namespace Ingenico
 
 		private void timer1_Tick(object sender, EventArgs e)
 		{
+			Console.WriteLine("Timer");
 			if (applicationProtocol.ResponseData(out var msgData, out var szRespStatus, out var packageSeq, out var bDisconnectCom))
 			{
 				if (szRespStatus == "99")
@@ -1749,7 +1752,6 @@ namespace Ingenico
 
 		private void DisplayReceiptMsg(List<byte[]> szListRespPrint)
 		{
-			Console.WriteLine("Hear Is place 1");
 			var num = 0;
 			var dataElement = new DataElement();
 			var responseMsg = new ResponseMsg();
@@ -1837,7 +1839,7 @@ namespace Ingenico
 				GetReceiptBuffer(stringBuilder2, ref custHtmlStringBuffer, ref custImgBytesBuffer);
 			}
 			Console.WriteLine(stringBuilderForReport.ToString());
-			Server.SendResponse(stringBuilderForReport.ToString());
+			Client.SendResponse(stringBuilderForReport.ToString());
 		}
 
 		private void DisplayCashDrawerRsp(IReadOnlyList<Dictionary<int, string>> listDico)
@@ -2025,7 +2027,7 @@ namespace Ingenico
 
 		private List<Dictionary<int, string>> DisplayResponseMsg(string title, List<byte[]> szResponse)
 		{
-			Console.WriteLine("Hear is place 0");
+			Console.WriteLine("DisplayResponseMsg");
 			var dataElement = new DataElement();
 			var responseMsg = new ResponseMsg();
 			var stringBuilder = new StringBuilder();
@@ -2141,7 +2143,7 @@ namespace Ingenico
 			}
 			Ticket.ScrollToCaret();
 			Console.WriteLine(stringBuilderForReport.ToString());
-			Server.SendResponse(stringBuilderForReport.ToString());
+			Client.SendResponse(stringBuilderForReport.ToString());
 			return list2;
 		}
 
@@ -2279,6 +2281,7 @@ namespace Ingenico
 		{
 			var num = applicationProtocol.StartConnection(Com);
 			if (num) return true;
+			Console.WriteLine("Connection failed: Terminal not found!");
 			MessageBox.Show("Connection failed: Terminal not found!", "WINTSI", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 			return false;
 		}

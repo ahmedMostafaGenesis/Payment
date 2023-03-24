@@ -75,7 +75,7 @@ public class Communication
 
 	public void SaveConfigInFile()
 	{
-		try
+		/*try
 		{
 			var configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 			configuration.AppSettings.Settings.Remove("link_Type");
@@ -114,12 +114,12 @@ public class Communication
 		catch
 		{
 			Trace.WriteLine("Error : Save Config Params");
-		}
+		}*/
 	}
 
 	private void ReadConfigFile()
 	{
-		try
+		/*try
 		{
 			LinkType = ConfigurationManager.AppSettings["link_Type"];
 			PortName = ConfigurationManager.AppSettings["port_Name"];
@@ -148,7 +148,12 @@ public class Communication
 		catch
 		{
 			Trace.WriteLine("Error : Read Config Params");
-		}
+		}*/
+		LinkType = "Serial";
+		PortName = "COM3";
+		BaudRate = 19200;
+		IpAddress = "127.0.0.1";
+		IpPort = 8091;
 	}
 
 	public string ComGetPortName()

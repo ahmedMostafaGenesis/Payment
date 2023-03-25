@@ -372,8 +372,12 @@ namespace Ingenico
 		[DllImport("KERNEL32.DLL", CallingConvention = CallingConvention.StdCall, SetLastError = true)]
 		private static extern IntPtr GetCurrentProcess();
 
+		public static HomeForm Instance;
+		public static Client Client;
+
 		public HomeForm()
 		{
+			Instance = this;
 			iParamType = 0;
 			Com = new Communication();
 			applicationProtocol = new ApplicationProtocol(this);
@@ -385,6 +389,8 @@ namespace Ingenico
 			UpdateListTenderType();
 			UpdateListTransactionType();
 			UpdateCBox();
+			Client = new Client();
+			Client.Initialize();
 		}
 
 		private void UpdateListTenderType()
@@ -1336,7 +1342,15 @@ namespace Ingenico
 					InitializeContext();
 				}
 			}
-			Cursor = Cursors.Default;
+
+			try
+			{
+				Cursor = Cursors.Default;
+			}
+			catch (Exception ex)
+			{
+				
+			}
 		}
 
 		
@@ -2282,7 +2296,7 @@ namespace Ingenico
 			var num = applicationProtocol.StartConnection(Com);
 			if (num) return true;
 			Console.WriteLine("Connection failed: Terminal not found!");
-			MessageBox.Show("Connection failed: Terminal not found!", "WINTSI", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+			//MessageBox.Show("Connection failed: Terminal not found!", "WINTSI", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 			return false;
 		}
 

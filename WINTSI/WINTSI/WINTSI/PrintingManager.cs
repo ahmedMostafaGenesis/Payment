@@ -1,5 +1,6 @@
 ﻿
 using System;
+using Ingenico;
 
 namespace GenesisCreations.PharmaTech
 {
@@ -51,7 +52,7 @@ namespace GenesisCreations.PharmaTech
         private static void OnPrintEnded(object sender, PrintEventArgs e)
         {
             Console.WriteLine("A receipt has been printed successfully.");
-            WINTSI.WebSocket.Client.SocketClient.Send("{\"status\":200, \"message\":\"success\", \"details\":\"Receipt printed successfully.\"}");
+            HomeForm.Client.SocketClient.Send("{\"status\":200, \"message\":\"success\", \"details\":\"Receipt printed successfully.\"}");
         }
 
         static void PrintReceiptPage(object sender, PrintPageEventArgs e)

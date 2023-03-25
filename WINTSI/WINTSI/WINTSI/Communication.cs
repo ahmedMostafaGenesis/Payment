@@ -311,7 +311,7 @@ public class Communication
 			}
 			catch
 			{
-				Client.SendResponse("Result:Technical Error/", PaymentStatus.FAIL);
+				HomeForm.Client.SendResponse("Result:Technical Error/", PaymentStatus.FAIL);
 				Trace.WriteLine("Error opening serial port");
 			}
 			Thread.Sleep(100);

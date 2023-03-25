@@ -1,3 +1,5 @@
+3/25/2023 2:07:30 AM:533 -> Couldn't play sound.
+3/25/2023 12:55:54 AM:852 -> Couldn't play sound.
 3/25/2023 12:53:26 AM:25 -> Couldn't play sound.
 3/25/2023 12:50:40 AM:728 -> Error opening serial port
 3/13/2023 6:15:41 PM:866 -> Error config serial port

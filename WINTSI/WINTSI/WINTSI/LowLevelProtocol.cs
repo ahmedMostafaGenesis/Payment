@@ -242,15 +242,6 @@ namespace Ingenico
 				com.Connect();
 				if (!Communication.GetConnectStatus()) return false;
 				_eState = eStatus.E_CONNECTED;
-				if (currentHome.Trace.Enabled)
-				{
-					const string text = "Connected\n\n";
-					currentHome.Trace.SelectionStart = currentHome.Trace.TextLength;
-					currentHome.Trace.SelectionLength = text.Length;
-					currentHome.Trace.SelectionColor = Color.Green;
-					currentHome.Trace.AppendText(text);
-					currentHome.Trace.ScrollToCaret();
-				}
 
 				if (readThread is {IsAlive: true})
 				{
@@ -272,7 +263,7 @@ namespace Ingenico
 			}
 			catch (Exception)
 			{
-				MessageBox.Show("COM port Error", "WINTSI", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				Console.Write("COM port Error.");
 				return false;
 			}
 		}

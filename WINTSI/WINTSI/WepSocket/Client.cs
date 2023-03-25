@@ -14,7 +14,7 @@ using ClientWebSocket = WebSocket4Net.WebSocket;
 
 namespace WINTSI.WebSocket
 {
-    public static class Client
+    public class Client
     {
         const string USER_NAME = "ptadmin";
         const string USER_HASH = "ZrK0AOQz+L1wjr2jNXZwMcgosUOeicIifZ+8fOWDur2TkV7m";
@@ -22,12 +22,12 @@ namespace WINTSI.WebSocket
         const string PASSWORD_KEY = "password";
         const float TOLERANCE = 0.01f;
         const bool DEBUG = true;
-        public static ClientWebSocket SocketClient;
+        public ClientWebSocket SocketClient;
 
-        private static bool IsProduction = false;
+        private bool IsProduction = false;
         private const string DevelopmentUri = "ws://127.0.0.1:9080";
         private const string ProductionUri = "ws://192.168.30.100:9080";
-        static string Uri => IsProduction ? ProductionUri : DevelopmentUri;
+        string Uri => IsProduction ? ProductionUri : DevelopmentUri;
 
         private enum ValidationResponse
         {
@@ -37,7 +37,7 @@ namespace WINTSI.WebSocket
             ValidPassword = 3
         }
         
-        public static void Initialize()
+        public void Initialize()
         {
             try
             {
@@ -56,7 +56,7 @@ namespace WINTSI.WebSocket
             }
         }
         
-        private static void OnSocketMessageReceived(object sender, MessageReceivedEventArgs e)
+        private void OnSocketMessageReceived(object sender, MessageReceivedEventArgs e)
         {
             Console.WriteLine(e.Message);
             try
@@ -72,31 +72,32 @@ namespace WINTSI.WebSocket
                 }
 
                 //TBD: Process payment here
-                Program.CreateRequest(paymentRequest.totalPrice);
+                //Program.CreateRequest(paymentRequest.totalPrice);
+                HomeForm.Instance.SendTheRequest(paymentRequest.totalPrice, 1);
                 //TBD: Build actual <see cref="PaymentResponse"/> data here:
                 // var response = new PaymentResponse(PaymentResponse.PaymentStatus.SUCCESS, paymentRequest.totalPrice,
                 //     "**** **** 4942", "SOME_REFERENCE");
             }
             catch (Exception ex)
             {
-                Console.WriteLine("[500] Internal server error.");
-                SocketClient.Send("Internal server error.");
+                //Console.WriteLine("[500] Internal server error.");
+                //SocketClient.Send("Internal server error.");
                 if (DEBUG)
                 {
                     Console.WriteLine(ex.Message);
-                    SocketClient.Send(ex.Message);
+                    //SocketClient.Send(ex.Message);
                 }
             }
         }
 
-        private static void OnSocketError(object sender, ErrorEventArgs e)
+        private void OnSocketError(object sender, ErrorEventArgs e)
         {
             Console.WriteLine($"An error occured while communicating with server on {Uri}.");
             if (DEBUG) Console.WriteLine(e.Exception.Message);
         }
-        private static void OnSocketClosed(object sender, EventArgs e) => Console.WriteLine($"Connection with server on {Uri} was shutdown.");
-        private static void OnSocketOpened(object sender, EventArgs e) => Console.WriteLine($"Connection with server on {Uri} was opened successfully."); // TODO: Validate session here.
-        public static void SendResponse(string result, PaymentStatus status = PaymentStatus.UNKNOWN)
+        private void OnSocketClosed(object sender, EventArgs e) => Console.WriteLine($"Connection with server on {Uri} was shutdown.");
+        private void OnSocketOpened(object sender, EventArgs e) => Console.WriteLine($"Connection with server on {Uri} was opened successfully."); // TODO: Validate session here.
+        public void SendResponse(string result, PaymentStatus status = PaymentStatus.UNKNOWN)
         {
             Console.WriteLine(status);
             var response = status == PaymentStatus.UNKNOWN
@@ -110,7 +111,7 @@ namespace WINTSI.WebSocket
             currentSession = null;*/
         }
         
-        static bool ValidatePaymentRequest(PaymentRequest paymentRequest)
+        bool ValidatePaymentRequest(PaymentRequest paymentRequest)
         {
             if (paymentRequest.products.Length != paymentRequest.productCount)
             {
@@ -124,7 +125,7 @@ namespace WINTSI.WebSocket
             return validPrice;
         }
 
-        static bool ValidateSession(WebSocketSession session)
+        bool ValidateSession(WebSocketSession session)
         {
             if (ValidatePrameters(session.Path)) return true;
             Console.WriteLine("[403] Client access attempt denied.");
@@ -133,7 +134,7 @@ namespace WINTSI.WebSocket
             return false;
         }
 
-        static bool ValidatePrameters(string sessionPath)
+        bool ValidatePrameters(string sessionPath)
         {
             var parameters = HttpUtility.ParseQueryString(sessionPath);
             var validUsername = false;
@@ -149,19 +150,19 @@ namespace WINTSI.WebSocket
             return validUsername && validPassword;
         }
 
-        static ValidationResponse ProcessKeyValue(string key, string value) =>
+        ValidationResponse ProcessKeyValue(string key, string value) =>
             key.Equals(USERNAME_KEY, StringComparison.OrdinalIgnoreCase)
                 ? ValidateUsername(value)
                 : (key.Equals(PASSWORD_KEY, StringComparison.OrdinalIgnoreCase)
                     ? ValidatePassword(value)
                     : ValidationResponse.None);
 
-        static ValidationResponse ValidateUsername(string username) =>
+        ValidationResponse ValidateUsername(string username) =>
             username.Equals(USER_NAME, StringComparison.OrdinalIgnoreCase)
                 ? ValidationResponse.ValidUsername
                 : ValidationResponse.InvalidUsernameOrPassword;
 
-        static ValidationResponse ValidatePassword(string password)
+        ValidationResponse ValidatePassword(string password)
         {
             var hashBytes = Convert.FromBase64String(USER_HASH);
             var salt = new byte[16];

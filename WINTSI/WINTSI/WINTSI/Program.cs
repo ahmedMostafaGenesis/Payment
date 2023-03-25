@@ -39,9 +39,9 @@ namespace Ingenico
 
 		private static void StartServer()
 		{
-			Client.Initialize();
+			//Client.Initialize();
 			//var line = Console.ReadLine();
-			CreateRequest(/*int.Parse(line)*/10000);
+			//CreateRequest(/*int.Parse(line)*/1000);
 		}
 		public static void CreateRequest(int amount)
 		{

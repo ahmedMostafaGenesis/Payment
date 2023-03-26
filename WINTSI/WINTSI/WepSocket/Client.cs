@@ -84,7 +84,7 @@ namespace WINTSI.WebSocket
                 //SocketClient.Send("Internal server error.");
                 if (DEBUG)
                 {
-                    Console.WriteLine(ex.Message);
+                    //Console.WriteLine(ex.Message);
                     //SocketClient.Send(ex.Message);
                 }
             }
